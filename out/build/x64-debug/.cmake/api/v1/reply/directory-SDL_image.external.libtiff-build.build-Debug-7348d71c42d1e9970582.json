@@ -1,0 +1,14 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : [],
+		"files" : [],
+		"nodes" : []
+	},
+	"installers" : [],
+	"paths" : 
+	{
+		"build" : "SDL_image/external/libtiff-build/build",
+		"source" : "SDL_image/external/libtiff/build"
+	}
+}

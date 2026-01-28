@@ -1,0 +1,13 @@
+prefix=D:/Coding/C++/Chess/out/install/x64-release
+exec_prefix=D:/Coding/C++/Chess/out/install/x64-release
+libdir=D:/Coding/C++/Chess/out/install/x64-release/lib
+sharedlibdir=D:/Coding/C++/Chess/out/install/x64-release/lib
+includedir=D:/Coding/C++/Chess/out/install/x64-release/include
+
+Name: zlib
+Description: zlib compression library
+Version: 1.3.1
+
+Requires:
+Libs: -L${libdir} -L${sharedlibdir} -lz
+Cflags: -I${includedir}

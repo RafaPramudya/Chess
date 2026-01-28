@@ -1,0 +1,169 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"install"
+		],
+		"files" : 
+		[
+			"SDL_image/external/libpng/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 1062,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 1088,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 1090,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 1103,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 1109,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 1111,
+				"parent" : 0
+			}
+		]
+	},
+	"installers" : 
+	[
+		{
+			"backtrace" : 1,
+			"component" : "Unspecified",
+			"destination" : "lib",
+			"paths" : 
+			[
+				"SDL_image/external/libpng-build/libpng16-16.lib"
+			],
+			"targetId" : "png_shared::@0a879f3d3ea20a41d662",
+			"targetIndex" : 21,
+			"targetIsImportLibrary" : true,
+			"type" : "target"
+		},
+		{
+			"backtrace" : 1,
+			"component" : "Unspecified",
+			"destination" : "bin",
+			"paths" : 
+			[
+				"SDL_image/external/libpng-build/libpng16-16.dll"
+			],
+			"targetId" : "png_shared::@0a879f3d3ea20a41d662",
+			"targetIndex" : 21,
+			"type" : "target"
+		},
+		{
+			"backtrace" : 1,
+			"component" : "Unspecified",
+			"destination" : "lib",
+			"paths" : 
+			[
+				"SDL_image/external/libpng-build/libpng16_static.lib"
+			],
+			"targetId" : "png_static::@0a879f3d3ea20a41d662",
+			"targetIndex" : 22,
+			"type" : "target"
+		},
+		{
+			"backtrace" : 2,
+			"component" : "Unspecified",
+			"destination" : "include",
+			"paths" : 
+			[
+				"SDL_image/external/libpng/png.h",
+				"SDL_image/external/libpng/pngconf.h",
+				"out/build/x64-release/SDL_image/external/libpng-build/pnglibconf.h"
+			],
+			"type" : "file"
+		},
+		{
+			"backtrace" : 3,
+			"component" : "Unspecified",
+			"destination" : "include/libpng16",
+			"paths" : 
+			[
+				"SDL_image/external/libpng/png.h",
+				"SDL_image/external/libpng/pngconf.h",
+				"out/build/x64-release/SDL_image/external/libpng-build/pnglibconf.h"
+			],
+			"type" : "file"
+		},
+		{
+			"backtrace" : 4,
+			"component" : "Unspecified",
+			"destination" : "bin",
+			"paths" : 
+			[
+				"SDL_image/external/libpng-build/pngfix.exe"
+			],
+			"targetId" : "pngfix::@0a879f3d3ea20a41d662",
+			"targetIndex" : 23,
+			"type" : "target"
+		},
+		{
+			"backtrace" : 4,
+			"component" : "Unspecified",
+			"destination" : "bin",
+			"paths" : 
+			[
+				"SDL_image/external/libpng-build/png-fix-itxt.exe"
+			],
+			"targetId" : "png-fix-itxt::@0a879f3d3ea20a41d662",
+			"targetIndex" : 19,
+			"type" : "target"
+		},
+		{
+			"backtrace" : 5,
+			"component" : "Unspecified",
+			"destination" : "share/man/man3",
+			"paths" : 
+			[
+				"SDL_image/external/libpng/libpng.3",
+				"SDL_image/external/libpng/libpngpf.3"
+			],
+			"type" : "file"
+		},
+		{
+			"backtrace" : 6,
+			"component" : "Unspecified",
+			"destination" : "share/man/man5",
+			"paths" : 
+			[
+				"SDL_image/external/libpng/png.5"
+			],
+			"type" : "file"
+		}
+	],
+	"paths" : 
+	{
+		"build" : "SDL_image/external/libpng-build",
+		"source" : "SDL_image/external/libpng"
+	}
+}

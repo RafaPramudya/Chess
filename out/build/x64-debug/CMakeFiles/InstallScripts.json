@@ -2,7 +2,21 @@
 	"InstallScripts" : 
 	[
 		"D:/Coding/C++/Chess/out/build/x64-debug/cmake_install.cmake",
-		"D:/Coding/C++/Chess/out/build/x64-debug/Chess/cmake_install.cmake"
+		"D:/Coding/C++/Chess/out/build/x64-debug/Chess/cmake_install.cmake",
+		"D:/Coding/C++/Chess/out/build/x64-debug/SDL/cmake_install.cmake",
+		"D:/Coding/C++/Chess/out/build/x64-debug/SDL_image/cmake_install.cmake",
+		"D:/Coding/C++/Chess/out/build/x64-debug/SDL_image/external/zlib-build/cmake_install.cmake",
+		"D:/Coding/C++/Chess/out/build/x64-debug/SDL_image/external/libpng-build/cmake_install.cmake",
+		"D:/Coding/C++/Chess/out/build/x64-debug/SDL_image/external/libtiff-build/cmake_install.cmake",
+		"D:/Coding/C++/Chess/out/build/x64-debug/SDL_image/external/libtiff-build/port/cmake_install.cmake",
+		"D:/Coding/C++/Chess/out/build/x64-debug/SDL_image/external/libtiff-build/libtiff/cmake_install.cmake",
+		"D:/Coding/C++/Chess/out/build/x64-debug/SDL_image/external/libtiff-build/build/cmake_install.cmake",
+		"D:/Coding/C++/Chess/out/build/x64-debug/SDL_image/external/libwebp-build/cmake_install.cmake",
+		"D:/Coding/C++/Chess/out/build/x64-debug/SDL_ttf/cmake_install.cmake",
+		"D:/Coding/C++/Chess/out/build/x64-debug/SDL_ttf/external/harfbuzz-build/cmake_install.cmake",
+		"D:/Coding/C++/Chess/out/build/x64-debug/SDL_ttf/external/freetype-build/cmake_install.cmake",
+		"D:/Coding/C++/Chess/out/build/x64-debug/SDL_ttf/external/plutovg-build/cmake_install.cmake",
+		"D:/Coding/C++/Chess/out/build/x64-debug/SDL_ttf/external/plutosvg-guild/cmake_install.cmake"
 	],
 	"Parallel" : false
 }
