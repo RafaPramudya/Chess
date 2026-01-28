@@ -11,5 +11,11 @@ endif()
 
 project ("Chess")
 
+set(BUILD_SHARED_LIBS OFF)
+set(SDLIMAGE_AVIF OFF)
+
 # Include sub-projects.
 add_subdirectory ("Chess")
+add_subdirectory ("SDL" EXCLUDE_FROM_ALL)
+add_subdirectory ("SDL_image" EXCLUDE_FROM_ALL)
+add_subdirectory ("SDL_ttf" EXCLUDE_FROM_ALL)
