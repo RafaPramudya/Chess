@@ -71,11 +71,12 @@ private:
 public:
 	Square() : index(64) {};
 	Square(uint8_t index) : index(index) {};
-	Square(char file, uint8_t rank) : index((file - 'a') * 8 + rank) {};
+	Square(uint8_t file, uint8_t rank) : index(rank * 8 + file) {};
 	Square(const char* tile) {
 		assert(std::strlen(tile) == 2);
 
-		index = (tile[0] - 'a') * 8 + (tile[1] - '1');
+		index = (tile[1] - '1') * 8 + (tile[0] - 'a');
+		std::printf("%d\n", index);
 	}
 
 	uint8_t getIndex() const {
@@ -104,13 +105,6 @@ public:
 };
 
 class Move {
-private:
-	static inline Piece encounterObstacle(Square sq, Piece* piecesArray) {
-		if (!sq) return Piece();
-		auto& piece = piecesArray[sq.getIndex()];
-
-		return (piece.getId() % 8) ? piece : Piece() ;
-	};
 public:
 	Square startSquare;
 	Square targetSquare;
@@ -135,7 +129,7 @@ public:
 		: startSquare(start), targetSquare(target), movingPiece(piece) {}
 	Move(Square target) : targetSquare(target) {}
 
-	static std::vector<Move> generateValidMoves(Square square, Piece* piecesArray); 
+	static std::vector<Move> generateValidMoves(Square square, Board* board); 
 	static std::vector<Move> generateMoves(Piece* piecesArray, bool whiteToPlay);
 };
 
@@ -144,12 +138,11 @@ private:
 	Piece piecesPlaced[64];
 
 	Square enPassantSquare;
-	struct {
-		bool whiteKing = false;		// White King-Side Castle
-		bool whiteQueen = false;	// White Queen-Side Castle
-		bool blackKing = false;		// Black King-Side Castle
-		bool blackQueen = false;	// Black Queen-Side Castle
-	} castleAvailable;
+
+	bool whiteKingCastle = false;		
+	bool whiteQueenCastle = false;	
+	bool blackKingCastle = false;		
+	bool blackQueenCastle = false;	
 
 	uint16_t halfMove = 0;
 	uint16_t fullMove = 0;
@@ -163,10 +156,24 @@ public:
 	Board(const char* fenNotation);
 
 	Piece* getPieces() { return piecesPlaced; }
-	Piece& getPiece(Square square) { return piecesPlaced[square.getIndex()]; }
+	Piece getPiece(Square square) { return (square) ? piecesPlaced[square.getIndex()] : Piece(); }
 
 	void makeMove(Move& move);
 	void unmakeMove(Move& move);
 
 	void printBoard(bool whiteSide = true);
+
+	bool getWhiteKingCastle  () const { return whiteKingCastle ; }
+	bool getWhiteQueenCastle () const { return whiteQueenCastle; }
+	bool getBlackKingCastle	 () const { return blackKingCastle ; }
+	bool getBlackQueenCastle () const { return blackQueenCastle; }
+
+	void setWhiteKingCastle  (bool flag) { whiteKingCastle  = flag; }
+	void setWhiteQueenCastle (bool flag) { whiteQueenCastle = flag; }
+	void setBlackKingCastle  (bool flag) { blackKingCastle  = flag; }
+	void setBlackQueenCastle (bool flag) { blackQueenCastle = flag; }
+
+	Square getEnPassant() const { return enPassantSquare; }
+	void setEnPassant(const Square& square) { enPassantSquare = square; }
+	void resetEnPassant() { enPassantSquare = Square(); }
 };

@@ -50,7 +50,7 @@ void Game::event()
 				Square selectedSquare;
 				if (whiteSideRender)	selectedSquare = ((7 - (int)std::floor(buttonEvent.y / 100)) * 8 + (int)std::floor(buttonEvent.x / 100));
 				else					selectedSquare = (((int)std::floor(buttonEvent.y / 100)) * 8 + 7 - (int)std::floor(buttonEvent.x / 100));
-				auto& piece = board->getPiece(selectedSquare);
+				auto piece = board->getPiece(selectedSquare);
 
 				std::printf("Selected Square %s, Piece %c\n", selectedSquare.getNotation(), piece.getNotation());
 				if (wantedMove.startSquare) {
@@ -59,15 +59,15 @@ void Game::event()
 
 					board->makeMove(wantedMove);
 
-					wantedMove.startSquare	= Square(64);
-					wantedMove.targetSquare = Square(64);
+					wantedMove.startSquare	= Square();
+					wantedMove.targetSquare = Square();
 				}
 				else {
 					if ((piece.getId() % 8) == Piece::NONE) break;
 					if (piece.isWhite() != board->whiteToMove) break;
 					wantedMove.startSquare = selectedSquare;
 
-					validMoves = Move::generateValidMoves(wantedMove.startSquare, board->getPieces());
+					validMoves = Move::generateValidMoves(wantedMove.startSquare, board);
 				}
 			}
 		}

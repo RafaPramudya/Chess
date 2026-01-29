@@ -1,5 +1,7 @@
 #include "Chess.h"
 
+#include <cmath>
+
 Piece::Piece(uint8_t id)
 {
 	this->id = id;
@@ -50,10 +52,10 @@ Board::Board(const char* fenNotation)
 			if (c == 'b' && !moveFlag)		{ whiteToMove = false; moveFlag = true; }
 			else if (c == 'w' && !moveFlag)	{ whiteToMove = true; moveFlag = true; }
 
-			if (c == 'K')		castleAvailable.whiteKing = true;
-			else if (c == 'Q')	castleAvailable.whiteQueen = true;
-			else if (c == 'k')	castleAvailable.blackKing = true;
-			else if (c == 'q')	castleAvailable.blackQueen = true;
+			if (c == 'K')		whiteKingCastle = true;
+			else if (c == 'Q')	whiteQueenCastle = true;
+			else if (c == 'k')	blackKingCastle = true;
+			else if (c == 'q')	blackQueenCastle = true;
 
 			if (c >= 'a' && c <= 'h') {
 				char c_next = fenNotation[++i];
@@ -85,9 +87,9 @@ void Board::makeMove(Move& move)
 {
 	if (!move.startSquare || !move.targetSquare) throw std::exception("Error Square Invalid Value");
 
-	auto& startPiece = piecesPlaced[move.startSquare.getIndex()];
+	auto startPiece = piecesPlaced[move.startSquare.getIndex()];
 
-	std::vector<Move> validMoves = Move::generateValidMoves(move.startSquare, getPieces());
+	std::vector<Move> validMoves = Move::generateValidMoves(move.startSquare, this);
 	bool valid = false;
 
 	for (const auto& validMove : validMoves) {
@@ -98,9 +100,42 @@ void Board::makeMove(Move& move)
 	}
 	if (!valid) return;
 
+	// EnPassant
+	if ((startPiece.getId() % 8) == Piece::PAWN && move.targetSquare == getEnPassant()) {
+		if (startPiece.isBlack())	piecesPlaced[(move.targetSquare + Move::UP).getIndex()] = Piece();
+		else						piecesPlaced[(move.targetSquare + Move::DOWN).getIndex()] = Piece();
+	}
+
+	resetEnPassant();
+	if ((startPiece.getId() % 8) == Piece::PAWN && std::abs(move.targetSquare.getRank() - move.startSquare.getRank()) == 2) {
+		setEnPassant((startPiece.isBlack()) ? move.targetSquare + Move::UP : move.targetSquare + Move::DOWN);
+		std::printf("En Passant Available");
+	}
+
+	// Castle
+	if (move.targetSquare == Square("a1") || move.startSquare == Square("a1")) whiteQueenCastle = false;
+	if (move.targetSquare == Square("h1") || move.startSquare == Square("h1")) whiteKingCastle = false;
+	if (move.targetSquare == Square("a8") || move.startSquare == Square("a8")) blackQueenCastle = false;
+	if (move.targetSquare == Square("h8") || move.startSquare == Square("h8")) blackKingCastle = false;
+	if ((startPiece.getId() % 8) == Piece::KING) {
+		if (startPiece.isBlack())	{ blackKingCastle = false; blackQueenCastle = false; }
+		else						{ whiteKingCastle = false; whiteQueenCastle = false; }
+
+		if (std::abs(move.startSquare.getFile() - move.targetSquare.getFile()) >= 2) {
+			if (move.targetSquare.getFile() == 2) {
+				piecesPlaced[(move.targetSquare + Move::RIGHT).getIndex()] = Piece(Piece::ROOK, startPiece.isWhite());
+				piecesPlaced[(move.targetSquare + Move::LEFT * 2).getIndex()] = Piece();
+			}
+			else if (move.targetSquare.getFile() == 6) {
+				piecesPlaced[(move.targetSquare + Move::LEFT).getIndex()] = Piece(Piece::ROOK, startPiece.isWhite());
+				piecesPlaced[(move.targetSquare + Move::RIGHT).getIndex()] = Piece();
+			}
+		}
+	}
+
+	// Execute Move
 	piecesPlaced[move.targetSquare.getIndex()] = startPiece;
 	piecesPlaced[move.startSquare.getIndex()] = Piece();
-
 	whiteToMove = !whiteToMove;
 }
 
@@ -133,12 +168,13 @@ void Board::printBoard(bool whiteSide)
 	}
 }
 
-std::vector<Move> Move::generateValidMoves(Square square, Piece* piecesArray)
+std::vector<Move> Move::generateValidMoves(Square square, Board* board)
 {
 	assert((bool) square);
-	Piece& piece = piecesArray[square.getIndex()];
+	Piece piece = board->getPiece(square);
 	std::vector<Move> results;
 
+	if (piece.isBlack() == board->whiteToMove) return results;
 	switch ((piece.getId() % 8)) {
 	case Piece::PAWN:
 	{
@@ -159,14 +195,14 @@ std::vector<Move> Move::generateValidMoves(Square square, Piece* piecesArray)
 		}
 
 		// Move
-		if (!encounterObstacle(targetSquare, piecesArray)) { 
+		if (!board->getPiece(targetSquare)) { 
 			results.emplace_back(targetSquare);
-			if (doubleSquare && !encounterObstacle(doubleSquare, piecesArray)) results.emplace_back(doubleSquare);
+			if (doubleSquare && !board->getPiece(doubleSquare)) { results.emplace_back(doubleSquare); }
 		}
 
 		// Capture
-		if (encounterObstacle(targetSquare + LEFT, piecesArray).isEnemy(piece)) results.emplace_back(targetSquare + LEFT);
-		if (encounterObstacle(targetSquare + RIGHT, piecesArray).isEnemy(piece)) results.emplace_back(targetSquare + RIGHT);
+		if (board->getPiece(targetSquare + LEFT).isEnemy(piece) || (targetSquare + LEFT == board->getEnPassant())) results.emplace_back(targetSquare + LEFT);
+		if (board->getPiece(targetSquare + RIGHT).isEnemy(piece) || (targetSquare + RIGHT == board->getEnPassant())) results.emplace_back(targetSquare + RIGHT);
 	}
 		break;
 	case Piece::KNIGHT:
@@ -186,7 +222,7 @@ std::vector<Move> Move::generateValidMoves(Square square, Piece* piecesArray)
 			if (square.getFile() <= 1 && targetSquare.getFile() >= 6) continue;
 			if (square.getFile() >= 6 && targetSquare.getFile() <= 1) continue;
 
-			auto obstacle = encounterObstacle(targetSquare, piecesArray);
+			auto obstacle = board->getPiece(targetSquare);
 			if (!obstacle) results.emplace_back(targetSquare); // Move
 			else if (piece.isEnemy(obstacle)) results.emplace_back(targetSquare); // Capture
 		}
@@ -199,7 +235,7 @@ std::vector<Move> Move::generateValidMoves(Square square, Piece* piecesArray)
 		Square targetSquare = square;
 		while (!obstacle && targetSquare.getFile() != 0 && targetSquare.getRank() != 7) {
 			targetSquare = targetSquare + UP + LEFT;
-			obstacle = encounterObstacle(targetSquare, piecesArray);
+			obstacle = board->getPiece(targetSquare);
 
 			if (!obstacle || piece.isEnemy(obstacle)) results.emplace_back(targetSquare);
 		}
@@ -209,7 +245,7 @@ std::vector<Move> Move::generateValidMoves(Square square, Piece* piecesArray)
 		targetSquare = square;
 		while (!obstacle && targetSquare.getFile() != 7 && targetSquare.getRank() != 7) {
 			targetSquare = targetSquare + UP + RIGHT;
-			obstacle = encounterObstacle(targetSquare, piecesArray);
+			obstacle = board->getPiece(targetSquare);
 
 			if (!obstacle || piece.isEnemy(obstacle)) results.emplace_back(targetSquare);
 		}
@@ -219,7 +255,7 @@ std::vector<Move> Move::generateValidMoves(Square square, Piece* piecesArray)
 		targetSquare = square;
 		while (!obstacle && targetSquare.getFile() != 0 && targetSquare.getRank() != 0) {
 			targetSquare = targetSquare + DOWN + LEFT;
-			obstacle = encounterObstacle(targetSquare, piecesArray);
+			obstacle = board->getPiece(targetSquare);
 
 			if (!obstacle || piece.isEnemy(obstacle)) results.emplace_back(targetSquare);
 		}
@@ -229,7 +265,7 @@ std::vector<Move> Move::generateValidMoves(Square square, Piece* piecesArray)
 		targetSquare = square;
 		while (!obstacle && targetSquare.getFile() != 7 && targetSquare.getRank() != 0) {
 			targetSquare = targetSquare + DOWN + RIGHT;
-			obstacle = encounterObstacle(targetSquare, piecesArray);
+			obstacle = board->getPiece(targetSquare);
 
 			if (!obstacle || piece.isEnemy(obstacle)) results.emplace_back(targetSquare);
 		}
@@ -241,7 +277,7 @@ std::vector<Move> Move::generateValidMoves(Square square, Piece* piecesArray)
 		Square targetSquare = square;
 		while (!obstacle && targetSquare.getFile() != 0) {
 			targetSquare = targetSquare + LEFT;
-			obstacle = encounterObstacle(targetSquare, piecesArray);
+			obstacle = board->getPiece(targetSquare);
 
 			if (!obstacle || piece.isEnemy(obstacle)) results.emplace_back(targetSquare);
 		}
@@ -250,7 +286,7 @@ std::vector<Move> Move::generateValidMoves(Square square, Piece* piecesArray)
 		targetSquare = square;
 		while (!obstacle && targetSquare.getFile() != 7) {
 			targetSquare = targetSquare + RIGHT;
-			obstacle = encounterObstacle(targetSquare, piecesArray);
+			obstacle = board->getPiece(targetSquare);
 
 			if (!obstacle || piece.isEnemy(obstacle)) results.emplace_back(targetSquare);
 		}
@@ -259,7 +295,7 @@ std::vector<Move> Move::generateValidMoves(Square square, Piece* piecesArray)
 		targetSquare = square;
 		while (!obstacle && targetSquare.getRank() != 0) {
 			targetSquare = targetSquare + DOWN;
-			obstacle = encounterObstacle(targetSquare, piecesArray);
+			obstacle = board->getPiece(targetSquare);
 
 			if (!obstacle || piece.isEnemy(obstacle)) results.emplace_back(targetSquare);
 		}
@@ -268,7 +304,7 @@ std::vector<Move> Move::generateValidMoves(Square square, Piece* piecesArray)
 		targetSquare = square;
 		while (!obstacle && targetSquare.getRank() != 7) {
 			targetSquare = targetSquare + UP;
-			obstacle = encounterObstacle(targetSquare, piecesArray);
+			obstacle = board->getPiece(targetSquare);
 
 			if (!obstacle || piece.isEnemy(obstacle)) results.emplace_back(targetSquare);
 		}
@@ -280,7 +316,7 @@ std::vector<Move> Move::generateValidMoves(Square square, Piece* piecesArray)
 		Square targetSquare = square;
 		while (!obstacle && targetSquare.getFile() != 0) {
 			targetSquare = targetSquare + LEFT;
-			obstacle = encounterObstacle(targetSquare, piecesArray);
+			obstacle = board->getPiece(targetSquare);
 
 			if (!obstacle || piece.isEnemy(obstacle)) results.emplace_back(targetSquare);
 		}
@@ -289,7 +325,7 @@ std::vector<Move> Move::generateValidMoves(Square square, Piece* piecesArray)
 		targetSquare = square;
 		while (!obstacle && targetSquare.getFile() != 7) {
 			targetSquare = targetSquare + RIGHT;
-			obstacle = encounterObstacle(targetSquare, piecesArray);
+			obstacle = board->getPiece(targetSquare);
 
 			if (!obstacle || piece.isEnemy(obstacle)) results.emplace_back(targetSquare);
 		}
@@ -298,7 +334,7 @@ std::vector<Move> Move::generateValidMoves(Square square, Piece* piecesArray)
 		targetSquare = square;
 		while (!obstacle && targetSquare.getRank() != 0) {
 			targetSquare = targetSquare + DOWN;
-			obstacle = encounterObstacle(targetSquare, piecesArray);
+			obstacle = board->getPiece(targetSquare);
 
 			if (!obstacle || piece.isEnemy(obstacle)) results.emplace_back(targetSquare);
 		}
@@ -307,7 +343,7 @@ std::vector<Move> Move::generateValidMoves(Square square, Piece* piecesArray)
 		targetSquare = square;
 		while (!obstacle && targetSquare.getRank() != 7) {
 			targetSquare = targetSquare + UP;
-			obstacle = encounterObstacle(targetSquare, piecesArray);
+			obstacle = board->getPiece(targetSquare);
 
 			if (!obstacle || piece.isEnemy(obstacle)) results.emplace_back(targetSquare);
 		}
@@ -317,7 +353,7 @@ std::vector<Move> Move::generateValidMoves(Square square, Piece* piecesArray)
 		targetSquare = square;
 		while (!obstacle && targetSquare.getFile() != 0 && targetSquare.getRank() != 7) {
 			targetSquare = targetSquare + UP + LEFT;
-			obstacle = encounterObstacle(targetSquare, piecesArray);
+			obstacle = board->getPiece(targetSquare);
 
 			if (!obstacle || piece.isEnemy(obstacle)) results.emplace_back(targetSquare);
 		}
@@ -327,7 +363,7 @@ std::vector<Move> Move::generateValidMoves(Square square, Piece* piecesArray)
 		targetSquare = square;
 		while (!obstacle && targetSquare.getFile() != 7 && targetSquare.getRank() != 7) {
 			targetSquare = targetSquare + UP + RIGHT;
-			obstacle = encounterObstacle(targetSquare, piecesArray);
+			obstacle = board->getPiece(targetSquare);
 
 			if (!obstacle || piece.isEnemy(obstacle)) results.emplace_back(targetSquare);
 		}
@@ -337,7 +373,7 @@ std::vector<Move> Move::generateValidMoves(Square square, Piece* piecesArray)
 		targetSquare = square;
 		while (!obstacle && targetSquare.getFile() != 0 && targetSquare.getRank() != 0) {
 			targetSquare = targetSquare + DOWN + LEFT;
-			obstacle = encounterObstacle(targetSquare, piecesArray);
+			obstacle = board->getPiece(targetSquare);
 
 			if (!obstacle || piece.isEnemy(obstacle)) results.emplace_back(targetSquare);
 		}
@@ -347,7 +383,7 @@ std::vector<Move> Move::generateValidMoves(Square square, Piece* piecesArray)
 		targetSquare = square;
 		while (!obstacle && targetSquare.getFile() != 7 && targetSquare.getRank() != 0) {
 			targetSquare = targetSquare + DOWN + RIGHT;
-			obstacle = encounterObstacle(targetSquare, piecesArray);
+			obstacle = board->getPiece(targetSquare);
 
 			if (!obstacle || piece.isEnemy(obstacle)) results.emplace_back(targetSquare);
 		}
@@ -367,8 +403,22 @@ std::vector<Move> Move::generateValidMoves(Square square, Piece* piecesArray)
 			if (square.getFile() == 0 && targetSquare.getFile() == 7) continue;
 			if (square.getFile() == 7 && targetSquare.getFile() == 0) continue;
 
-			auto obstacle = encounterObstacle(targetSquare, piecesArray);
+			auto obstacle = board->getPiece(targetSquare);
 			if (!obstacle || piece.isEnemy(obstacle)) results.emplace_back(targetSquare);
+		}
+
+		// Castle
+		if (board->getWhiteKingCastle() && piece.isWhite()) {
+			if (!board->getPiece(square + RIGHT) && !board->getPiece(square + RIGHT * 2)) results.emplace_back(square + RIGHT * 2);
+		}
+		if (board->getWhiteQueenCastle() && piece.isWhite()) {
+			if (!board->getPiece(square + LEFT) && !board->getPiece(square + LEFT * 2) && !board->getPiece(square + LEFT * 3)) results.emplace_back(square + LEFT * 2);
+		}
+		if (board->getBlackKingCastle() && piece.isBlack()) {
+			if (!board->getPiece(square + RIGHT) && !board->getPiece(square + RIGHT * 2)) results.emplace_back(square + RIGHT * 2);
+		}
+		if (board->getBlackQueenCastle() && piece.isBlack()) {
+			if (!board->getPiece(square + LEFT) && !board->getPiece(square + LEFT * 2) && !board->getPiece(square + LEFT * 3)) results.emplace_back(square + LEFT * 2);
 		}
 	}
 		break;
