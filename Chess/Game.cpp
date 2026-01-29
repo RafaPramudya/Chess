@@ -68,6 +68,14 @@ void Game::event()
 			}
 		}
 		break;
+		case SDL_EVENT_KEY_DOWN:
+		{
+			auto keyboardEvent = e.key;
+			if (keyboardEvent.key == SDLK_S) {
+				whiteSideRender = !whiteSideRender;
+			}
+		}
+			break;
 		default:
 			break;
 		}
@@ -111,19 +119,38 @@ void Game::render()
 		}
 	}
 
-	for (int rank = 7; rank >= 0; rank--) {
-		for (int file = 0; file < 8; file++) {
-			auto& piece = board->getPieces()[rank * 8 + file];
-			if ((piece.getId() % 8) == Piece::NONE) continue;
+	if (whiteSideRender) {
+		for (int rank = 7; rank >= 0; rank--) {
+			for (int file = 0; file < 8; file++) {
+				auto& piece = board->getPieces()[rank * 8 + file];
+				if ((piece.getId() % 8) == Piece::NONE) continue;
 
-			const auto sourceRect = SpriteManager::getSpriteRect(piece);
-			const auto destRect = SDL_FRect{ 
-				.x = static_cast<float>(file * BOARD_WIDTH / 8), 
-				.y = static_cast<float>((7 - rank) * BOARD_HEIGHT / 8),
-				.w = BOARD_WIDTH / 8, 
-				.h = BOARD_HEIGHT / 8 
-			};
-			SDL_RenderTexture(renderer, spriteTexture, &sourceRect, &destRect);
+				const auto sourceRect = SpriteManager::getSpriteRect(piece);
+				const auto destRect = SDL_FRect{
+					.x = static_cast<float>(file * BOARD_WIDTH / 8),
+					.y = static_cast<float>((7 - rank) * BOARD_HEIGHT / 8),
+					.w = BOARD_WIDTH / 8,
+					.h = BOARD_HEIGHT / 8
+				};
+				SDL_RenderTexture(renderer, spriteTexture, &sourceRect, &destRect);
+			}
+		}
+	}
+	else {
+		for (int rank = 0; rank < 8; rank++) {
+			for (int file = 7; file >= 0; file--) {
+				auto& piece = board->getPieces()[rank * 8 + file];
+				if ((piece.getId() % 8) == Piece::NONE) continue;
+
+				const auto sourceRect = SpriteManager::getSpriteRect(piece);
+				const auto destRect = SDL_FRect{
+					.x = static_cast<float>((7 - file) * BOARD_WIDTH / 8),
+					.y = static_cast<float>(rank * BOARD_HEIGHT / 8),
+					.w = BOARD_WIDTH / 8,
+					.h = BOARD_HEIGHT / 8
+				};
+				SDL_RenderTexture(renderer, spriteTexture, &sourceRect, &destRect);
+			}
 		}
 	}
 

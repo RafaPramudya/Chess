@@ -42,6 +42,7 @@ private:
 	SDL_Texture* spriteTexture = nullptr;
 
 	bool running = false;
+	bool whiteSideRender = true;
 
 	Board* board = nullptr;
 	Move wantedMove;
