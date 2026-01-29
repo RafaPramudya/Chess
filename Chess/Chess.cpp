@@ -201,8 +201,8 @@ std::vector<Move> Move::generateValidMoves(Square square, Board* board)
 		}
 
 		// Capture
-		if (board->getPiece(targetSquare + LEFT).isEnemy(piece) || (targetSquare + LEFT == board->getEnPassant())) results.emplace_back(targetSquare + LEFT);
-		if (board->getPiece(targetSquare + RIGHT).isEnemy(piece) || (targetSquare + RIGHT == board->getEnPassant())) results.emplace_back(targetSquare + RIGHT);
+		if (square.getFile() != 0 && (board->getPiece(targetSquare + LEFT).isEnemy(piece) || (targetSquare + LEFT == board->getEnPassant()))) results.emplace_back(targetSquare + LEFT);
+		if (square.getFile() != 7 && board->getPiece(targetSquare + RIGHT).isEnemy(piece) || (targetSquare + RIGHT == board->getEnPassant())) results.emplace_back(targetSquare + RIGHT);
 	}
 		break;
 	case Piece::KNIGHT:
