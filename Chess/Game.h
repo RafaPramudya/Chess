@@ -8,6 +8,7 @@ private:
 	SDL_Renderer* renderer = nullptr;
 	SDL_Event e;
 	
+	SDL_Texture* boardTexture = nullptr;
 	bool running = false;
 public:
 	Game();

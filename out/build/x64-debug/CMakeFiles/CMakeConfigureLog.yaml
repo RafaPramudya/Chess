@@ -43669,3 +43669,431 @@ events:
         
       exitCode: 1
 ...
+
+---
+events:
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Program Files/Microsoft Visual Studio/18/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-4.1/Modules/Internal/CheckSourceCompiles.cmake:104 (try_compile)"
+      - "C:/Program Files/Microsoft Visual Studio/18/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-4.1/Modules/CheckCSourceCompiles.cmake:103 (cmake_check_source_compiles)"
+      - "SDL_image/external/libwebp/cmake/cpu.cmake:21 (check_c_source_compiles)"
+      - "SDL_image/external/libwebp/cmake/cpu.cmake:90 (webp_check_compiler_flag)"
+      - "SDL_image/external/libwebp/cmake/deps.cmake:145 (include)"
+      - "SDL_image/external/libwebp/CMakeLists.txt:112 (include)"
+    checks:
+      - "Performing Test WEBP_HAVE_FLAG_SSE41"
+    directories:
+      source: "D:/Coding/C++/Chess/out/build/x64-debug/CMakeFiles/CMakeScratch/TryCompile-pwfjvd"
+      binary: "D:/Coding/C++/Chess/out/build/x64-debug/CMakeFiles/CMakeScratch/TryCompile-pwfjvd"
+    cmakeVariables:
+      CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS /W3"
+      CMAKE_C_FLAGS_DEBUG: "/MDd /Ob0 /Od /RTC1"
+      CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
+      CMAKE_MODULE_PATH: "D:/Coding/C++/Chess/SDL_image/cmake"
+      CMAKE_MSVC_DEBUG_INFORMATION_FORMAT: "$<IF:$<AND:$<C_COMPILER_ID:MSVC>,$<CXX_COMPILER_ID:MSVC>>,$<$<CONFIG:Debug,RelWithDebInfo>:EditAndContinue>,$<$<CONFIG:Debug,RelWithDebInfo>:ProgramDatabase>>"
+      CMAKE_POSITION_INDEPENDENT_CODE: "ON"
+    buildResult:
+      variable: "WEBP_HAVE_FLAG_SSE41"
+      cached: true
+      stdout: |
+        Change Dir: 'D:/Coding/C++/Chess/out/build/x64-debug/CMakeFiles/CMakeScratch/TryCompile-pwfjvd'
+        
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/18/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe" -v cmTC_adaf3
+        [1/2] C:\\PROGRA~1\\MIB055~1\\18\\COMMUN~1\\VC\\Tools\\MSVC\\1450~1.357\\bin\\Hostx64\\x64\\cl.exe  /nologo -DWEBP_HAVE_FLAG_SSE41 -ID:\\Coding\\C++\\Chess\\SDL_image\\external\\libwebp /DWIN32 /D_WINDOWS /W3  /MDd /Ob0 /Od /RTC1 -Zi /showIncludes /FoCMakeFiles\\cmTC_adaf3.dir\\src.c.obj /FdCMakeFiles\\cmTC_adaf3.dir\\ /FS -c D:\\Coding\\C++\\Chess\\out\\build\\x64-debug\\CMakeFiles\\CMakeScratch\\TryCompile-pwfjvd\\src.c
+        [2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && "C:\\Program Files\\Microsoft Visual Studio\\18\\Community\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe" -E vs_link_exe --msvc-ver=1950 --intdir=CMakeFiles\\cmTC_adaf3.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\mt.exe --manifests  -- C:\\PROGRA~1\\MIB055~1\\18\\COMMUN~1\\VC\\Tools\\MSVC\\1450~1.357\\bin\\Hostx64\\x64\\link.exe /nologo CMakeFiles\\cmTC_adaf3.dir\\src.c.obj  /out:cmTC_adaf3.exe /implib:cmTC_adaf3.lib /pdb:cmTC_adaf3.pdb /version:0.0 /machine:x64  /debug /INCREMENTAL /subsystem:console  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Program Files/Microsoft Visual Studio/18/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-4.1/Modules/Internal/CheckSourceCompiles.cmake:104 (try_compile)"
+      - "C:/Program Files/Microsoft Visual Studio/18/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-4.1/Modules/CheckCSourceCompiles.cmake:103 (cmake_check_source_compiles)"
+      - "SDL_image/external/libwebp/cmake/cpu.cmake:21 (check_c_source_compiles)"
+      - "SDL_image/external/libwebp/cmake/cpu.cmake:90 (webp_check_compiler_flag)"
+      - "SDL_image/external/libwebp/cmake/deps.cmake:145 (include)"
+      - "SDL_image/external/libwebp/CMakeLists.txt:112 (include)"
+    checks:
+      - "Performing Test WEBP_HAVE_FLAG_SSE2"
+    directories:
+      source: "D:/Coding/C++/Chess/out/build/x64-debug/CMakeFiles/CMakeScratch/TryCompile-j7sofo"
+      binary: "D:/Coding/C++/Chess/out/build/x64-debug/CMakeFiles/CMakeScratch/TryCompile-j7sofo"
+    cmakeVariables:
+      CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS /W3"
+      CMAKE_C_FLAGS_DEBUG: "/MDd /Ob0 /Od /RTC1"
+      CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
+      CMAKE_MODULE_PATH: "D:/Coding/C++/Chess/SDL_image/cmake"
+      CMAKE_MSVC_DEBUG_INFORMATION_FORMAT: "$<IF:$<AND:$<C_COMPILER_ID:MSVC>,$<CXX_COMPILER_ID:MSVC>>,$<$<CONFIG:Debug,RelWithDebInfo>:EditAndContinue>,$<$<CONFIG:Debug,RelWithDebInfo>:ProgramDatabase>>"
+      CMAKE_POSITION_INDEPENDENT_CODE: "ON"
+    buildResult:
+      variable: "WEBP_HAVE_FLAG_SSE2"
+      cached: true
+      stdout: |
+        Change Dir: 'D:/Coding/C++/Chess/out/build/x64-debug/CMakeFiles/CMakeScratch/TryCompile-j7sofo'
+        
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/18/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe" -v cmTC_03cd2
+        [1/2] C:\\PROGRA~1\\MIB055~1\\18\\COMMUN~1\\VC\\Tools\\MSVC\\1450~1.357\\bin\\Hostx64\\x64\\cl.exe  /nologo -DWEBP_HAVE_FLAG_SSE2 -ID:\\Coding\\C++\\Chess\\SDL_image\\external\\libwebp /DWIN32 /D_WINDOWS /W3  /MDd /Ob0 /Od /RTC1 -Zi /showIncludes /FoCMakeFiles\\cmTC_03cd2.dir\\src.c.obj /FdCMakeFiles\\cmTC_03cd2.dir\\ /FS -c D:\\Coding\\C++\\Chess\\out\\build\\x64-debug\\CMakeFiles\\CMakeScratch\\TryCompile-j7sofo\\src.c
+        [2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && "C:\\Program Files\\Microsoft Visual Studio\\18\\Community\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe" -E vs_link_exe --msvc-ver=1950 --intdir=CMakeFiles\\cmTC_03cd2.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\mt.exe --manifests  -- C:\\PROGRA~1\\MIB055~1\\18\\COMMUN~1\\VC\\Tools\\MSVC\\1450~1.357\\bin\\Hostx64\\x64\\link.exe /nologo CMakeFiles\\cmTC_03cd2.dir\\src.c.obj  /out:cmTC_03cd2.exe /implib:cmTC_03cd2.lib /pdb:cmTC_03cd2.pdb /version:0.0 /machine:x64  /debug /INCREMENTAL /subsystem:console  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Program Files/Microsoft Visual Studio/18/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-4.1/Modules/Internal/CheckSourceCompiles.cmake:104 (try_compile)"
+      - "C:/Program Files/Microsoft Visual Studio/18/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-4.1/Modules/CheckCSourceCompiles.cmake:103 (cmake_check_source_compiles)"
+      - "SDL_image/external/libwebp/cmake/cpu.cmake:21 (check_c_source_compiles)"
+      - "SDL_image/external/libwebp/cmake/cpu.cmake:90 (webp_check_compiler_flag)"
+      - "SDL_image/external/libwebp/cmake/deps.cmake:145 (include)"
+      - "SDL_image/external/libwebp/CMakeLists.txt:112 (include)"
+    checks:
+      - "Performing Test WEBP_HAVE_FLAG_MIPS32"
+    directories:
+      source: "D:/Coding/C++/Chess/out/build/x64-debug/CMakeFiles/CMakeScratch/TryCompile-erderj"
+      binary: "D:/Coding/C++/Chess/out/build/x64-debug/CMakeFiles/CMakeScratch/TryCompile-erderj"
+    cmakeVariables:
+      CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS /W3"
+      CMAKE_C_FLAGS_DEBUG: "/MDd /Ob0 /Od /RTC1"
+      CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
+      CMAKE_MODULE_PATH: "D:/Coding/C++/Chess/SDL_image/cmake"
+      CMAKE_MSVC_DEBUG_INFORMATION_FORMAT: "$<IF:$<AND:$<C_COMPILER_ID:MSVC>,$<CXX_COMPILER_ID:MSVC>>,$<$<CONFIG:Debug,RelWithDebInfo>:EditAndContinue>,$<$<CONFIG:Debug,RelWithDebInfo>:ProgramDatabase>>"
+      CMAKE_POSITION_INDEPENDENT_CODE: "ON"
+    buildResult:
+      variable: "WEBP_HAVE_FLAG_MIPS32"
+      cached: true
+      stdout: |
+        Change Dir: 'D:/Coding/C++/Chess/out/build/x64-debug/CMakeFiles/CMakeScratch/TryCompile-erderj'
+        
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/18/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe" -v cmTC_9f6ed
+        [1/2] C:\\PROGRA~1\\MIB055~1\\18\\COMMUN~1\\VC\\Tools\\MSVC\\1450~1.357\\bin\\Hostx64\\x64\\cl.exe  /nologo -DWEBP_HAVE_FLAG_MIPS32 -ID:\\Coding\\C++\\Chess\\SDL_image\\external\\libwebp /DWIN32 /D_WINDOWS /W3  /MDd /Ob0 /Od /RTC1 -Zi /showIncludes /FoCMakeFiles\\cmTC_9f6ed.dir\\src.c.obj /FdCMakeFiles\\cmTC_9f6ed.dir\\ /FS -c D:\\Coding\\C++\\Chess\\out\\build\\x64-debug\\CMakeFiles\\CMakeScratch\\TryCompile-erderj\\src.c
+        FAILED: CMakeFiles/cmTC_9f6ed.dir/src.c.obj 
+        C:\\PROGRA~1\\MIB055~1\\18\\COMMUN~1\\VC\\Tools\\MSVC\\1450~1.357\\bin\\Hostx64\\x64\\cl.exe  /nologo -DWEBP_HAVE_FLAG_MIPS32 -ID:\\Coding\\C++\\Chess\\SDL_image\\external\\libwebp /DWIN32 /D_WINDOWS /W3  /MDd /Ob0 /Od /RTC1 -Zi /showIncludes /FoCMakeFiles\\cmTC_9f6ed.dir\\src.c.obj /FdCMakeFiles\\cmTC_9f6ed.dir\\ /FS -c D:\\Coding\\C++\\Chess\\out\\build\\x64-debug\\CMakeFiles\\CMakeScratch\\TryCompile-erderj\\src.c
+        D:\\Coding\\C++\\Chess\\out\\build\\x64-debug\\CMakeFiles\\CMakeScratch\\TryCompile-erderj\\src.c(5): error C2065: 'this': undeclared identifier
+        D:\\Coding\\C++\\Chess\\out\\build\\x64-debug\\CMakeFiles\\CMakeScratch\\TryCompile-erderj\\src.c(5): error C2146: syntax error: missing ';' before identifier 'is'
+        D:\\Coding\\C++\\Chess\\out\\build\\x64-debug\\CMakeFiles\\CMakeScratch\\TryCompile-erderj\\src.c(5): error C2065: 'is': undeclared identifier
+        D:\\Coding\\C++\\Chess\\out\\build\\x64-debug\\CMakeFiles\\CMakeScratch\\TryCompile-erderj\\src.c(5): error C2146: syntax error: missing ';' before identifier 'not'
+        D:\\Coding\\C++\\Chess\\out\\build\\x64-debug\\CMakeFiles\\CMakeScratch\\TryCompile-erderj\\src.c(5): error C2065: 'not': undeclared identifier
+        D:\\Coding\\C++\\Chess\\out\\build\\x64-debug\\CMakeFiles\\CMakeScratch\\TryCompile-erderj\\src.c(5): error C2146: syntax error: missing ';' before identifier 'valid'
+        D:\\Coding\\C++\\Chess\\out\\build\\x64-debug\\CMakeFiles\\CMakeScratch\\TryCompile-erderj\\src.c(5): error C2065: 'valid': undeclared identifier
+        D:\\Coding\\C++\\Chess\\out\\build\\x64-debug\\CMakeFiles\\CMakeScratch\\TryCompile-erderj\\src.c(5): error C2146: syntax error: missing ';' before identifier 'code'
+        D:\\Coding\\C++\\Chess\\out\\build\\x64-debug\\CMakeFiles\\CMakeScratch\\TryCompile-erderj\\src.c(5): error C2065: 'code': undeclared identifier
+        D:\\Coding\\C++\\Chess\\out\\build\\x64-debug\\CMakeFiles\\CMakeScratch\\TryCompile-erderj\\src.c(7): error C2143: syntax error: missing ';' before 'return'
+        ninja: build stopped: subcommand failed.
+        
+      exitCode: 1
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Program Files/Microsoft Visual Studio/18/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-4.1/Modules/Internal/CheckSourceCompiles.cmake:104 (try_compile)"
+      - "C:/Program Files/Microsoft Visual Studio/18/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-4.1/Modules/CheckCSourceCompiles.cmake:103 (cmake_check_source_compiles)"
+      - "SDL_image/external/libwebp/cmake/cpu.cmake:21 (check_c_source_compiles)"
+      - "SDL_image/external/libwebp/cmake/cpu.cmake:97 (webp_check_compiler_flag)"
+      - "SDL_image/external/libwebp/cmake/deps.cmake:145 (include)"
+      - "SDL_image/external/libwebp/CMakeLists.txt:112 (include)"
+    checks:
+      - "Performing Test WEBP_HAVE_FLAG_MIPS32"
+    directories:
+      source: "D:/Coding/C++/Chess/out/build/x64-debug/CMakeFiles/CMakeScratch/TryCompile-fpwdfd"
+      binary: "D:/Coding/C++/Chess/out/build/x64-debug/CMakeFiles/CMakeScratch/TryCompile-fpwdfd"
+    cmakeVariables:
+      CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS /W3"
+      CMAKE_C_FLAGS_DEBUG: "/MDd /Ob0 /Od /RTC1"
+      CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
+      CMAKE_MODULE_PATH: "D:/Coding/C++/Chess/SDL_image/cmake"
+      CMAKE_MSVC_DEBUG_INFORMATION_FORMAT: "$<IF:$<AND:$<C_COMPILER_ID:MSVC>,$<CXX_COMPILER_ID:MSVC>>,$<$<CONFIG:Debug,RelWithDebInfo>:EditAndContinue>,$<$<CONFIG:Debug,RelWithDebInfo>:ProgramDatabase>>"
+      CMAKE_POSITION_INDEPENDENT_CODE: "ON"
+    buildResult:
+      variable: "WEBP_HAVE_FLAG_MIPS32"
+      cached: true
+      stdout: |
+        Change Dir: 'D:/Coding/C++/Chess/out/build/x64-debug/CMakeFiles/CMakeScratch/TryCompile-fpwdfd'
+        
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/18/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe" -v cmTC_b20e9
+        [1/2] C:\\PROGRA~1\\MIB055~1\\18\\COMMUN~1\\VC\\Tools\\MSVC\\1450~1.357\\bin\\Hostx64\\x64\\cl.exe  /nologo -DWEBP_HAVE_FLAG_MIPS32 -ID:\\Coding\\C++\\Chess\\SDL_image\\external\\libwebp /DWIN32 /D_WINDOWS /W3 NOTFOUND /MDd /Ob0 /Od /RTC1 -Zi /showIncludes /FoCMakeFiles\\cmTC_b20e9.dir\\src.c.obj /FdCMakeFiles\\cmTC_b20e9.dir\\ /FS -c D:\\Coding\\C++\\Chess\\out\\build\\x64-debug\\CMakeFiles\\CMakeScratch\\TryCompile-fpwdfd\\src.c
+        FAILED: CMakeFiles/cmTC_b20e9.dir/src.c.obj 
+        C:\\PROGRA~1\\MIB055~1\\18\\COMMUN~1\\VC\\Tools\\MSVC\\1450~1.357\\bin\\Hostx64\\x64\\cl.exe  /nologo -DWEBP_HAVE_FLAG_MIPS32 -ID:\\Coding\\C++\\Chess\\SDL_image\\external\\libwebp /DWIN32 /D_WINDOWS /W3 NOTFOUND /MDd /Ob0 /Od /RTC1 -Zi /showIncludes /FoCMakeFiles\\cmTC_b20e9.dir\\src.c.obj /FdCMakeFiles\\cmTC_b20e9.dir\\ /FS -c D:\\Coding\\C++\\Chess\\out\\build\\x64-debug\\CMakeFiles\\CMakeScratch\\TryCompile-fpwdfd\\src.c
+        cl : Command line warning D9024 : unrecognized source file type 'NOTFOUND', object file assumed
+        cl : Command line warning D9027 : source file 'NOTFOUND' ignored
+        D:\\Coding\\C++\\Chess\\out\\build\\x64-debug\\CMakeFiles\\CMakeScratch\\TryCompile-fpwdfd\\src.c(5): error C2065: 'this': undeclared identifier
+        D:\\Coding\\C++\\Chess\\out\\build\\x64-debug\\CMakeFiles\\CMakeScratch\\TryCompile-fpwdfd\\src.c(5): error C2146: syntax error: missing ';' before identifier 'is'
+        D:\\Coding\\C++\\Chess\\out\\build\\x64-debug\\CMakeFiles\\CMakeScratch\\TryCompile-fpwdfd\\src.c(5): error C2065: 'is': undeclared identifier
+        D:\\Coding\\C++\\Chess\\out\\build\\x64-debug\\CMakeFiles\\CMakeScratch\\TryCompile-fpwdfd\\src.c(5): error C2146: syntax error: missing ';' before identifier 'not'
+        D:\\Coding\\C++\\Chess\\out\\build\\x64-debug\\CMakeFiles\\CMakeScratch\\TryCompile-fpwdfd\\src.c(5): error C2065: 'not': undeclared identifier
+        D:\\Coding\\C++\\Chess\\out\\build\\x64-debug\\CMakeFiles\\CMakeScratch\\TryCompile-fpwdfd\\src.c(5): error C2146: syntax error: missing ';' before identifier 'valid'
+        D:\\Coding\\C++\\Chess\\out\\build\\x64-debug\\CMakeFiles\\CMakeScratch\\TryCompile-fpwdfd\\src.c(5): error C2065: 'valid': undeclared identifier
+        D:\\Coding\\C++\\Chess\\out\\build\\x64-debug\\CMakeFiles\\CMakeScratch\\TryCompile-fpwdfd\\src.c(5): error C2146: syntax error: missing ';' before identifier 'code'
+        D:\\Coding\\C++\\Chess\\out\\build\\x64-debug\\CMakeFiles\\CMakeScratch\\TryCompile-fpwdfd\\src.c(5): error C2065: 'code': undeclared identifier
+        D:\\Coding\\C++\\Chess\\out\\build\\x64-debug\\CMakeFiles\\CMakeScratch\\TryCompile-fpwdfd\\src.c(7): error C2143: syntax error: missing ';' before 'return'
+        ninja: build stopped: subcommand failed.
+        
+      exitCode: 1
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Program Files/Microsoft Visual Studio/18/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-4.1/Modules/Internal/CheckSourceCompiles.cmake:104 (try_compile)"
+      - "C:/Program Files/Microsoft Visual Studio/18/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-4.1/Modules/CheckCSourceCompiles.cmake:103 (cmake_check_source_compiles)"
+      - "SDL_image/external/libwebp/cmake/cpu.cmake:21 (check_c_source_compiles)"
+      - "SDL_image/external/libwebp/cmake/cpu.cmake:90 (webp_check_compiler_flag)"
+      - "SDL_image/external/libwebp/cmake/deps.cmake:145 (include)"
+      - "SDL_image/external/libwebp/CMakeLists.txt:112 (include)"
+    checks:
+      - "Performing Test WEBP_HAVE_FLAG_MIPS_DSP_R2"
+    directories:
+      source: "D:/Coding/C++/Chess/out/build/x64-debug/CMakeFiles/CMakeScratch/TryCompile-h97o3y"
+      binary: "D:/Coding/C++/Chess/out/build/x64-debug/CMakeFiles/CMakeScratch/TryCompile-h97o3y"
+    cmakeVariables:
+      CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS /W3"
+      CMAKE_C_FLAGS_DEBUG: "/MDd /Ob0 /Od /RTC1"
+      CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
+      CMAKE_MODULE_PATH: "D:/Coding/C++/Chess/SDL_image/cmake"
+      CMAKE_MSVC_DEBUG_INFORMATION_FORMAT: "$<IF:$<AND:$<C_COMPILER_ID:MSVC>,$<CXX_COMPILER_ID:MSVC>>,$<$<CONFIG:Debug,RelWithDebInfo>:EditAndContinue>,$<$<CONFIG:Debug,RelWithDebInfo>:ProgramDatabase>>"
+      CMAKE_POSITION_INDEPENDENT_CODE: "ON"
+    buildResult:
+      variable: "WEBP_HAVE_FLAG_MIPS_DSP_R2"
+      cached: true
+      stdout: |
+        Change Dir: 'D:/Coding/C++/Chess/out/build/x64-debug/CMakeFiles/CMakeScratch/TryCompile-h97o3y'
+        
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/18/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe" -v cmTC_0e229
+        [1/2] C:\\PROGRA~1\\MIB055~1\\18\\COMMUN~1\\VC\\Tools\\MSVC\\1450~1.357\\bin\\Hostx64\\x64\\cl.exe  /nologo -DWEBP_HAVE_FLAG_MIPS_DSP_R2 -ID:\\Coding\\C++\\Chess\\SDL_image\\external\\libwebp /DWIN32 /D_WINDOWS /W3  /MDd /Ob0 /Od /RTC1 -Zi /showIncludes /FoCMakeFiles\\cmTC_0e229.dir\\src.c.obj /FdCMakeFiles\\cmTC_0e229.dir\\ /FS -c D:\\Coding\\C++\\Chess\\out\\build\\x64-debug\\CMakeFiles\\CMakeScratch\\TryCompile-h97o3y\\src.c
+        FAILED: CMakeFiles/cmTC_0e229.dir/src.c.obj 
+        C:\\PROGRA~1\\MIB055~1\\18\\COMMUN~1\\VC\\Tools\\MSVC\\1450~1.357\\bin\\Hostx64\\x64\\cl.exe  /nologo -DWEBP_HAVE_FLAG_MIPS_DSP_R2 -ID:\\Coding\\C++\\Chess\\SDL_image\\external\\libwebp /DWIN32 /D_WINDOWS /W3  /MDd /Ob0 /Od /RTC1 -Zi /showIncludes /FoCMakeFiles\\cmTC_0e229.dir\\src.c.obj /FdCMakeFiles\\cmTC_0e229.dir\\ /FS -c D:\\Coding\\C++\\Chess\\out\\build\\x64-debug\\CMakeFiles\\CMakeScratch\\TryCompile-h97o3y\\src.c
+        D:\\Coding\\C++\\Chess\\out\\build\\x64-debug\\CMakeFiles\\CMakeScratch\\TryCompile-h97o3y\\src.c(5): error C2065: 'this': undeclared identifier
+        D:\\Coding\\C++\\Chess\\out\\build\\x64-debug\\CMakeFiles\\CMakeScratch\\TryCompile-h97o3y\\src.c(5): error C2146: syntax error: missing ';' before identifier 'is'
+        D:\\Coding\\C++\\Chess\\out\\build\\x64-debug\\CMakeFiles\\CMakeScratch\\TryCompile-h97o3y\\src.c(5): error C2065: 'is': undeclared identifier
+        D:\\Coding\\C++\\Chess\\out\\build\\x64-debug\\CMakeFiles\\CMakeScratch\\TryCompile-h97o3y\\src.c(5): error C2146: syntax error: missing ';' before identifier 'not'
+        D:\\Coding\\C++\\Chess\\out\\build\\x64-debug\\CMakeFiles\\CMakeScratch\\TryCompile-h97o3y\\src.c(5): error C2065: 'not': undeclared identifier
+        D:\\Coding\\C++\\Chess\\out\\build\\x64-debug\\CMakeFiles\\CMakeScratch\\TryCompile-h97o3y\\src.c(5): error C2146: syntax error: missing ';' before identifier 'valid'
+        D:\\Coding\\C++\\Chess\\out\\build\\x64-debug\\CMakeFiles\\CMakeScratch\\TryCompile-h97o3y\\src.c(5): error C2065: 'valid': undeclared identifier
+        D:\\Coding\\C++\\Chess\\out\\build\\x64-debug\\CMakeFiles\\CMakeScratch\\TryCompile-h97o3y\\src.c(5): error C2146: syntax error: missing ';' before identifier 'code'
+        D:\\Coding\\C++\\Chess\\out\\build\\x64-debug\\CMakeFiles\\CMakeScratch\\TryCompile-h97o3y\\src.c(5): error C2065: 'code': undeclared identifier
+        D:\\Coding\\C++\\Chess\\out\\build\\x64-debug\\CMakeFiles\\CMakeScratch\\TryCompile-h97o3y\\src.c(7): error C2143: syntax error: missing ';' before 'return'
+        ninja: build stopped: subcommand failed.
+        
+      exitCode: 1
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Program Files/Microsoft Visual Studio/18/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-4.1/Modules/Internal/CheckSourceCompiles.cmake:104 (try_compile)"
+      - "C:/Program Files/Microsoft Visual Studio/18/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-4.1/Modules/CheckCSourceCompiles.cmake:103 (cmake_check_source_compiles)"
+      - "SDL_image/external/libwebp/cmake/cpu.cmake:21 (check_c_source_compiles)"
+      - "SDL_image/external/libwebp/cmake/cpu.cmake:97 (webp_check_compiler_flag)"
+      - "SDL_image/external/libwebp/cmake/deps.cmake:145 (include)"
+      - "SDL_image/external/libwebp/CMakeLists.txt:112 (include)"
+    checks:
+      - "Performing Test WEBP_HAVE_FLAG_MIPS_DSP_R2"
+    directories:
+      source: "D:/Coding/C++/Chess/out/build/x64-debug/CMakeFiles/CMakeScratch/TryCompile-rn792y"
+      binary: "D:/Coding/C++/Chess/out/build/x64-debug/CMakeFiles/CMakeScratch/TryCompile-rn792y"
+    cmakeVariables:
+      CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS /W3"
+      CMAKE_C_FLAGS_DEBUG: "/MDd /Ob0 /Od /RTC1"
+      CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
+      CMAKE_MODULE_PATH: "D:/Coding/C++/Chess/SDL_image/cmake"
+      CMAKE_MSVC_DEBUG_INFORMATION_FORMAT: "$<IF:$<AND:$<C_COMPILER_ID:MSVC>,$<CXX_COMPILER_ID:MSVC>>,$<$<CONFIG:Debug,RelWithDebInfo>:EditAndContinue>,$<$<CONFIG:Debug,RelWithDebInfo>:ProgramDatabase>>"
+      CMAKE_POSITION_INDEPENDENT_CODE: "ON"
+    buildResult:
+      variable: "WEBP_HAVE_FLAG_MIPS_DSP_R2"
+      cached: true
+      stdout: |
+        Change Dir: 'D:/Coding/C++/Chess/out/build/x64-debug/CMakeFiles/CMakeScratch/TryCompile-rn792y'
+        
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/18/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe" -v cmTC_beedd
+        [1/2] C:\\PROGRA~1\\MIB055~1\\18\\COMMUN~1\\VC\\Tools\\MSVC\\1450~1.357\\bin\\Hostx64\\x64\\cl.exe  /nologo -DWEBP_HAVE_FLAG_MIPS_DSP_R2 -ID:\\Coding\\C++\\Chess\\SDL_image\\external\\libwebp /DWIN32 /D_WINDOWS /W3 NOTFOUND /MDd /Ob0 /Od /RTC1 -Zi /showIncludes /FoCMakeFiles\\cmTC_beedd.dir\\src.c.obj /FdCMakeFiles\\cmTC_beedd.dir\\ /FS -c D:\\Coding\\C++\\Chess\\out\\build\\x64-debug\\CMakeFiles\\CMakeScratch\\TryCompile-rn792y\\src.c
+        FAILED: CMakeFiles/cmTC_beedd.dir/src.c.obj 
+        C:\\PROGRA~1\\MIB055~1\\18\\COMMUN~1\\VC\\Tools\\MSVC\\1450~1.357\\bin\\Hostx64\\x64\\cl.exe  /nologo -DWEBP_HAVE_FLAG_MIPS_DSP_R2 -ID:\\Coding\\C++\\Chess\\SDL_image\\external\\libwebp /DWIN32 /D_WINDOWS /W3 NOTFOUND /MDd /Ob0 /Od /RTC1 -Zi /showIncludes /FoCMakeFiles\\cmTC_beedd.dir\\src.c.obj /FdCMakeFiles\\cmTC_beedd.dir\\ /FS -c D:\\Coding\\C++\\Chess\\out\\build\\x64-debug\\CMakeFiles\\CMakeScratch\\TryCompile-rn792y\\src.c
+        cl : Command line warning D9024 : unrecognized source file type 'NOTFOUND', object file assumed
+        cl : Command line warning D9027 : source file 'NOTFOUND' ignored
+        D:\\Coding\\C++\\Chess\\out\\build\\x64-debug\\CMakeFiles\\CMakeScratch\\TryCompile-rn792y\\src.c(5): error C2065: 'this': undeclared identifier
+        D:\\Coding\\C++\\Chess\\out\\build\\x64-debug\\CMakeFiles\\CMakeScratch\\TryCompile-rn792y\\src.c(5): error C2146: syntax error: missing ';' before identifier 'is'
+        D:\\Coding\\C++\\Chess\\out\\build\\x64-debug\\CMakeFiles\\CMakeScratch\\TryCompile-rn792y\\src.c(5): error C2065: 'is': undeclared identifier
+        D:\\Coding\\C++\\Chess\\out\\build\\x64-debug\\CMakeFiles\\CMakeScratch\\TryCompile-rn792y\\src.c(5): error C2146: syntax error: missing ';' before identifier 'not'
+        D:\\Coding\\C++\\Chess\\out\\build\\x64-debug\\CMakeFiles\\CMakeScratch\\TryCompile-rn792y\\src.c(5): error C2065: 'not': undeclared identifier
+        D:\\Coding\\C++\\Chess\\out\\build\\x64-debug\\CMakeFiles\\CMakeScratch\\TryCompile-rn792y\\src.c(5): error C2146: syntax error: missing ';' before identifier 'valid'
+        D:\\Coding\\C++\\Chess\\out\\build\\x64-debug\\CMakeFiles\\CMakeScratch\\TryCompile-rn792y\\src.c(5): error C2065: 'valid': undeclared identifier
+        D:\\Coding\\C++\\Chess\\out\\build\\x64-debug\\CMakeFiles\\CMakeScratch\\TryCompile-rn792y\\src.c(5): error C2146: syntax error: missing ';' before identifier 'code'
+        D:\\Coding\\C++\\Chess\\out\\build\\x64-debug\\CMakeFiles\\CMakeScratch\\TryCompile-rn792y\\src.c(5): error C2065: 'code': undeclared identifier
+        D:\\Coding\\C++\\Chess\\out\\build\\x64-debug\\CMakeFiles\\CMakeScratch\\TryCompile-rn792y\\src.c(7): error C2143: syntax error: missing ';' before 'return'
+        ninja: build stopped: subcommand failed.
+        
+      exitCode: 1
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Program Files/Microsoft Visual Studio/18/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-4.1/Modules/Internal/CheckSourceCompiles.cmake:104 (try_compile)"
+      - "C:/Program Files/Microsoft Visual Studio/18/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-4.1/Modules/CheckCSourceCompiles.cmake:103 (cmake_check_source_compiles)"
+      - "SDL_image/external/libwebp/cmake/cpu.cmake:21 (check_c_source_compiles)"
+      - "SDL_image/external/libwebp/cmake/cpu.cmake:90 (webp_check_compiler_flag)"
+      - "SDL_image/external/libwebp/cmake/deps.cmake:145 (include)"
+      - "SDL_image/external/libwebp/CMakeLists.txt:112 (include)"
+    checks:
+      - "Performing Test WEBP_HAVE_FLAG_NEON"
+    directories:
+      source: "D:/Coding/C++/Chess/out/build/x64-debug/CMakeFiles/CMakeScratch/TryCompile-sx40f7"
+      binary: "D:/Coding/C++/Chess/out/build/x64-debug/CMakeFiles/CMakeScratch/TryCompile-sx40f7"
+    cmakeVariables:
+      CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS /W3"
+      CMAKE_C_FLAGS_DEBUG: "/MDd /Ob0 /Od /RTC1"
+      CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
+      CMAKE_MODULE_PATH: "D:/Coding/C++/Chess/SDL_image/cmake"
+      CMAKE_MSVC_DEBUG_INFORMATION_FORMAT: "$<IF:$<AND:$<C_COMPILER_ID:MSVC>,$<CXX_COMPILER_ID:MSVC>>,$<$<CONFIG:Debug,RelWithDebInfo>:EditAndContinue>,$<$<CONFIG:Debug,RelWithDebInfo>:ProgramDatabase>>"
+      CMAKE_POSITION_INDEPENDENT_CODE: "ON"
+    buildResult:
+      variable: "WEBP_HAVE_FLAG_NEON"
+      cached: true
+      stdout: |
+        Change Dir: 'D:/Coding/C++/Chess/out/build/x64-debug/CMakeFiles/CMakeScratch/TryCompile-sx40f7'
+        
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/18/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe" -v cmTC_67a21
+        [1/2] C:\\PROGRA~1\\MIB055~1\\18\\COMMUN~1\\VC\\Tools\\MSVC\\1450~1.357\\bin\\Hostx64\\x64\\cl.exe  /nologo -DWEBP_HAVE_FLAG_NEON -ID:\\Coding\\C++\\Chess\\SDL_image\\external\\libwebp /DWIN32 /D_WINDOWS /W3  /MDd /Ob0 /Od /RTC1 -Zi /showIncludes /FoCMakeFiles\\cmTC_67a21.dir\\src.c.obj /FdCMakeFiles\\cmTC_67a21.dir\\ /FS -c D:\\Coding\\C++\\Chess\\out\\build\\x64-debug\\CMakeFiles\\CMakeScratch\\TryCompile-sx40f7\\src.c
+        FAILED: CMakeFiles/cmTC_67a21.dir/src.c.obj 
+        C:\\PROGRA~1\\MIB055~1\\18\\COMMUN~1\\VC\\Tools\\MSVC\\1450~1.357\\bin\\Hostx64\\x64\\cl.exe  /nologo -DWEBP_HAVE_FLAG_NEON -ID:\\Coding\\C++\\Chess\\SDL_image\\external\\libwebp /DWIN32 /D_WINDOWS /W3  /MDd /Ob0 /Od /RTC1 -Zi /showIncludes /FoCMakeFiles\\cmTC_67a21.dir\\src.c.obj /FdCMakeFiles\\cmTC_67a21.dir\\ /FS -c D:\\Coding\\C++\\Chess\\out\\build\\x64-debug\\CMakeFiles\\CMakeScratch\\TryCompile-sx40f7\\src.c
+        D:\\Coding\\C++\\Chess\\out\\build\\x64-debug\\CMakeFiles\\CMakeScratch\\TryCompile-sx40f7\\src.c(5): error C2065: 'this': undeclared identifier
+        D:\\Coding\\C++\\Chess\\out\\build\\x64-debug\\CMakeFiles\\CMakeScratch\\TryCompile-sx40f7\\src.c(5): error C2146: syntax error: missing ';' before identifier 'is'
+        D:\\Coding\\C++\\Chess\\out\\build\\x64-debug\\CMakeFiles\\CMakeScratch\\TryCompile-sx40f7\\src.c(5): error C2065: 'is': undeclared identifier
+        D:\\Coding\\C++\\Chess\\out\\build\\x64-debug\\CMakeFiles\\CMakeScratch\\TryCompile-sx40f7\\src.c(5): error C2146: syntax error: missing ';' before identifier 'not'
+        D:\\Coding\\C++\\Chess\\out\\build\\x64-debug\\CMakeFiles\\CMakeScratch\\TryCompile-sx40f7\\src.c(5): error C2065: 'not': undeclared identifier
+        D:\\Coding\\C++\\Chess\\out\\build\\x64-debug\\CMakeFiles\\CMakeScratch\\TryCompile-sx40f7\\src.c(5): error C2146: syntax error: missing ';' before identifier 'valid'
+        D:\\Coding\\C++\\Chess\\out\\build\\x64-debug\\CMakeFiles\\CMakeScratch\\TryCompile-sx40f7\\src.c(5): error C2065: 'valid': undeclared identifier
+        D:\\Coding\\C++\\Chess\\out\\build\\x64-debug\\CMakeFiles\\CMakeScratch\\TryCompile-sx40f7\\src.c(5): error C2146: syntax error: missing ';' before identifier 'code'
+        D:\\Coding\\C++\\Chess\\out\\build\\x64-debug\\CMakeFiles\\CMakeScratch\\TryCompile-sx40f7\\src.c(5): error C2065: 'code': undeclared identifier
+        D:\\Coding\\C++\\Chess\\out\\build\\x64-debug\\CMakeFiles\\CMakeScratch\\TryCompile-sx40f7\\src.c(7): error C2143: syntax error: missing ';' before 'return'
+        ninja: build stopped: subcommand failed.
+        
+      exitCode: 1
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Program Files/Microsoft Visual Studio/18/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-4.1/Modules/Internal/CheckSourceCompiles.cmake:104 (try_compile)"
+      - "C:/Program Files/Microsoft Visual Studio/18/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-4.1/Modules/CheckCSourceCompiles.cmake:103 (cmake_check_source_compiles)"
+      - "SDL_image/external/libwebp/cmake/cpu.cmake:21 (check_c_source_compiles)"
+      - "SDL_image/external/libwebp/cmake/cpu.cmake:97 (webp_check_compiler_flag)"
+      - "SDL_image/external/libwebp/cmake/deps.cmake:145 (include)"
+      - "SDL_image/external/libwebp/CMakeLists.txt:112 (include)"
+    checks:
+      - "Performing Test WEBP_HAVE_FLAG_NEON"
+    directories:
+      source: "D:/Coding/C++/Chess/out/build/x64-debug/CMakeFiles/CMakeScratch/TryCompile-5b39tn"
+      binary: "D:/Coding/C++/Chess/out/build/x64-debug/CMakeFiles/CMakeScratch/TryCompile-5b39tn"
+    cmakeVariables:
+      CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS /W3"
+      CMAKE_C_FLAGS_DEBUG: "/MDd /Ob0 /Od /RTC1"
+      CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
+      CMAKE_MODULE_PATH: "D:/Coding/C++/Chess/SDL_image/cmake"
+      CMAKE_MSVC_DEBUG_INFORMATION_FORMAT: "$<IF:$<AND:$<C_COMPILER_ID:MSVC>,$<CXX_COMPILER_ID:MSVC>>,$<$<CONFIG:Debug,RelWithDebInfo>:EditAndContinue>,$<$<CONFIG:Debug,RelWithDebInfo>:ProgramDatabase>>"
+      CMAKE_POSITION_INDEPENDENT_CODE: "ON"
+    buildResult:
+      variable: "WEBP_HAVE_FLAG_NEON"
+      cached: true
+      stdout: |
+        Change Dir: 'D:/Coding/C++/Chess/out/build/x64-debug/CMakeFiles/CMakeScratch/TryCompile-5b39tn'
+        
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/18/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe" -v cmTC_4e2da
+        [1/2] C:\\PROGRA~1\\MIB055~1\\18\\COMMUN~1\\VC\\Tools\\MSVC\\1450~1.357\\bin\\Hostx64\\x64\\cl.exe  /nologo -DWEBP_HAVE_FLAG_NEON -ID:\\Coding\\C++\\Chess\\SDL_image\\external\\libwebp /DWIN32 /D_WINDOWS /W3 NOTFOUND /MDd /Ob0 /Od /RTC1 -Zi /showIncludes /FoCMakeFiles\\cmTC_4e2da.dir\\src.c.obj /FdCMakeFiles\\cmTC_4e2da.dir\\ /FS -c D:\\Coding\\C++\\Chess\\out\\build\\x64-debug\\CMakeFiles\\CMakeScratch\\TryCompile-5b39tn\\src.c
+        FAILED: CMakeFiles/cmTC_4e2da.dir/src.c.obj 
+        C:\\PROGRA~1\\MIB055~1\\18\\COMMUN~1\\VC\\Tools\\MSVC\\1450~1.357\\bin\\Hostx64\\x64\\cl.exe  /nologo -DWEBP_HAVE_FLAG_NEON -ID:\\Coding\\C++\\Chess\\SDL_image\\external\\libwebp /DWIN32 /D_WINDOWS /W3 NOTFOUND /MDd /Ob0 /Od /RTC1 -Zi /showIncludes /FoCMakeFiles\\cmTC_4e2da.dir\\src.c.obj /FdCMakeFiles\\cmTC_4e2da.dir\\ /FS -c D:\\Coding\\C++\\Chess\\out\\build\\x64-debug\\CMakeFiles\\CMakeScratch\\TryCompile-5b39tn\\src.c
+        cl : Command line warning D9024 : unrecognized source file type 'NOTFOUND', object file assumed
+        cl : Command line warning D9027 : source file 'NOTFOUND' ignored
+        D:\\Coding\\C++\\Chess\\out\\build\\x64-debug\\CMakeFiles\\CMakeScratch\\TryCompile-5b39tn\\src.c(5): error C2065: 'this': undeclared identifier
+        D:\\Coding\\C++\\Chess\\out\\build\\x64-debug\\CMakeFiles\\CMakeScratch\\TryCompile-5b39tn\\src.c(5): error C2146: syntax error: missing ';' before identifier 'is'
+        D:\\Coding\\C++\\Chess\\out\\build\\x64-debug\\CMakeFiles\\CMakeScratch\\TryCompile-5b39tn\\src.c(5): error C2065: 'is': undeclared identifier
+        D:\\Coding\\C++\\Chess\\out\\build\\x64-debug\\CMakeFiles\\CMakeScratch\\TryCompile-5b39tn\\src.c(5): error C2146: syntax error: missing ';' before identifier 'not'
+        D:\\Coding\\C++\\Chess\\out\\build\\x64-debug\\CMakeFiles\\CMakeScratch\\TryCompile-5b39tn\\src.c(5): error C2065: 'not': undeclared identifier
+        D:\\Coding\\C++\\Chess\\out\\build\\x64-debug\\CMakeFiles\\CMakeScratch\\TryCompile-5b39tn\\src.c(5): error C2146: syntax error: missing ';' before identifier 'valid'
+        D:\\Coding\\C++\\Chess\\out\\build\\x64-debug\\CMakeFiles\\CMakeScratch\\TryCompile-5b39tn\\src.c(5): error C2065: 'valid': undeclared identifier
+        D:\\Coding\\C++\\Chess\\out\\build\\x64-debug\\CMakeFiles\\CMakeScratch\\TryCompile-5b39tn\\src.c(5): error C2146: syntax error: missing ';' before identifier 'code'
+        D:\\Coding\\C++\\Chess\\out\\build\\x64-debug\\CMakeFiles\\CMakeScratch\\TryCompile-5b39tn\\src.c(5): error C2065: 'code': undeclared identifier
+        D:\\Coding\\C++\\Chess\\out\\build\\x64-debug\\CMakeFiles\\CMakeScratch\\TryCompile-5b39tn\\src.c(7): error C2143: syntax error: missing ';' before 'return'
+        ninja: build stopped: subcommand failed.
+        
+      exitCode: 1
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Program Files/Microsoft Visual Studio/18/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-4.1/Modules/Internal/CheckSourceCompiles.cmake:104 (try_compile)"
+      - "C:/Program Files/Microsoft Visual Studio/18/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-4.1/Modules/CheckCSourceCompiles.cmake:103 (cmake_check_source_compiles)"
+      - "SDL_image/external/libwebp/cmake/cpu.cmake:21 (check_c_source_compiles)"
+      - "SDL_image/external/libwebp/cmake/cpu.cmake:90 (webp_check_compiler_flag)"
+      - "SDL_image/external/libwebp/cmake/deps.cmake:145 (include)"
+      - "SDL_image/external/libwebp/CMakeLists.txt:112 (include)"
+    checks:
+      - "Performing Test WEBP_HAVE_FLAG_MSA"
+    directories:
+      source: "D:/Coding/C++/Chess/out/build/x64-debug/CMakeFiles/CMakeScratch/TryCompile-qqtjz3"
+      binary: "D:/Coding/C++/Chess/out/build/x64-debug/CMakeFiles/CMakeScratch/TryCompile-qqtjz3"
+    cmakeVariables:
+      CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS /W3"
+      CMAKE_C_FLAGS_DEBUG: "/MDd /Ob0 /Od /RTC1"
+      CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
+      CMAKE_MODULE_PATH: "D:/Coding/C++/Chess/SDL_image/cmake"
+      CMAKE_MSVC_DEBUG_INFORMATION_FORMAT: "$<IF:$<AND:$<C_COMPILER_ID:MSVC>,$<CXX_COMPILER_ID:MSVC>>,$<$<CONFIG:Debug,RelWithDebInfo>:EditAndContinue>,$<$<CONFIG:Debug,RelWithDebInfo>:ProgramDatabase>>"
+      CMAKE_POSITION_INDEPENDENT_CODE: "ON"
+    buildResult:
+      variable: "WEBP_HAVE_FLAG_MSA"
+      cached: true
+      stdout: |
+        Change Dir: 'D:/Coding/C++/Chess/out/build/x64-debug/CMakeFiles/CMakeScratch/TryCompile-qqtjz3'
+        
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/18/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe" -v cmTC_47d6f
+        [1/2] C:\\PROGRA~1\\MIB055~1\\18\\COMMUN~1\\VC\\Tools\\MSVC\\1450~1.357\\bin\\Hostx64\\x64\\cl.exe  /nologo -DWEBP_HAVE_FLAG_MSA -ID:\\Coding\\C++\\Chess\\SDL_image\\external\\libwebp /DWIN32 /D_WINDOWS /W3  /MDd /Ob0 /Od /RTC1 -Zi /showIncludes /FoCMakeFiles\\cmTC_47d6f.dir\\src.c.obj /FdCMakeFiles\\cmTC_47d6f.dir\\ /FS -c D:\\Coding\\C++\\Chess\\out\\build\\x64-debug\\CMakeFiles\\CMakeScratch\\TryCompile-qqtjz3\\src.c
+        FAILED: CMakeFiles/cmTC_47d6f.dir/src.c.obj 
+        C:\\PROGRA~1\\MIB055~1\\18\\COMMUN~1\\VC\\Tools\\MSVC\\1450~1.357\\bin\\Hostx64\\x64\\cl.exe  /nologo -DWEBP_HAVE_FLAG_MSA -ID:\\Coding\\C++\\Chess\\SDL_image\\external\\libwebp /DWIN32 /D_WINDOWS /W3  /MDd /Ob0 /Od /RTC1 -Zi /showIncludes /FoCMakeFiles\\cmTC_47d6f.dir\\src.c.obj /FdCMakeFiles\\cmTC_47d6f.dir\\ /FS -c D:\\Coding\\C++\\Chess\\out\\build\\x64-debug\\CMakeFiles\\CMakeScratch\\TryCompile-qqtjz3\\src.c
+        D:\\Coding\\C++\\Chess\\out\\build\\x64-debug\\CMakeFiles\\CMakeScratch\\TryCompile-qqtjz3\\src.c(5): error C2065: 'this': undeclared identifier
+        D:\\Coding\\C++\\Chess\\out\\build\\x64-debug\\CMakeFiles\\CMakeScratch\\TryCompile-qqtjz3\\src.c(5): error C2146: syntax error: missing ';' before identifier 'is'
+        D:\\Coding\\C++\\Chess\\out\\build\\x64-debug\\CMakeFiles\\CMakeScratch\\TryCompile-qqtjz3\\src.c(5): error C2065: 'is': undeclared identifier
+        D:\\Coding\\C++\\Chess\\out\\build\\x64-debug\\CMakeFiles\\CMakeScratch\\TryCompile-qqtjz3\\src.c(5): error C2146: syntax error: missing ';' before identifier 'not'
+        D:\\Coding\\C++\\Chess\\out\\build\\x64-debug\\CMakeFiles\\CMakeScratch\\TryCompile-qqtjz3\\src.c(5): error C2065: 'not': undeclared identifier
+        D:\\Coding\\C++\\Chess\\out\\build\\x64-debug\\CMakeFiles\\CMakeScratch\\TryCompile-qqtjz3\\src.c(5): error C2146: syntax error: missing ';' before identifier 'valid'
+        D:\\Coding\\C++\\Chess\\out\\build\\x64-debug\\CMakeFiles\\CMakeScratch\\TryCompile-qqtjz3\\src.c(5): error C2065: 'valid': undeclared identifier
+        D:\\Coding\\C++\\Chess\\out\\build\\x64-debug\\CMakeFiles\\CMakeScratch\\TryCompile-qqtjz3\\src.c(5): error C2146: syntax error: missing ';' before identifier 'code'
+        D:\\Coding\\C++\\Chess\\out\\build\\x64-debug\\CMakeFiles\\CMakeScratch\\TryCompile-qqtjz3\\src.c(5): error C2065: 'code': undeclared identifier
+        D:\\Coding\\C++\\Chess\\out\\build\\x64-debug\\CMakeFiles\\CMakeScratch\\TryCompile-qqtjz3\\src.c(7): error C2143: syntax error: missing ';' before 'return'
+        ninja: build stopped: subcommand failed.
+        
+      exitCode: 1
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Program Files/Microsoft Visual Studio/18/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-4.1/Modules/Internal/CheckSourceCompiles.cmake:104 (try_compile)"
+      - "C:/Program Files/Microsoft Visual Studio/18/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-4.1/Modules/CheckCSourceCompiles.cmake:103 (cmake_check_source_compiles)"
+      - "SDL_image/external/libwebp/cmake/cpu.cmake:21 (check_c_source_compiles)"
+      - "SDL_image/external/libwebp/cmake/cpu.cmake:97 (webp_check_compiler_flag)"
+      - "SDL_image/external/libwebp/cmake/deps.cmake:145 (include)"
+      - "SDL_image/external/libwebp/CMakeLists.txt:112 (include)"
+    checks:
+      - "Performing Test WEBP_HAVE_FLAG_MSA"
+    directories:
+      source: "D:/Coding/C++/Chess/out/build/x64-debug/CMakeFiles/CMakeScratch/TryCompile-ed6rm7"
+      binary: "D:/Coding/C++/Chess/out/build/x64-debug/CMakeFiles/CMakeScratch/TryCompile-ed6rm7"
+    cmakeVariables:
+      CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS /W3"
+      CMAKE_C_FLAGS_DEBUG: "/MDd /Ob0 /Od /RTC1"
+      CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
+      CMAKE_MODULE_PATH: "D:/Coding/C++/Chess/SDL_image/cmake"
+      CMAKE_MSVC_DEBUG_INFORMATION_FORMAT: "$<IF:$<AND:$<C_COMPILER_ID:MSVC>,$<CXX_COMPILER_ID:MSVC>>,$<$<CONFIG:Debug,RelWithDebInfo>:EditAndContinue>,$<$<CONFIG:Debug,RelWithDebInfo>:ProgramDatabase>>"
+      CMAKE_POSITION_INDEPENDENT_CODE: "ON"
+    buildResult:
+      variable: "WEBP_HAVE_FLAG_MSA"
+      cached: true
+      stdout: |
+        Change Dir: 'D:/Coding/C++/Chess/out/build/x64-debug/CMakeFiles/CMakeScratch/TryCompile-ed6rm7'
+        
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/18/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe" -v cmTC_caec1
+        [1/2] C:\\PROGRA~1\\MIB055~1\\18\\COMMUN~1\\VC\\Tools\\MSVC\\1450~1.357\\bin\\Hostx64\\x64\\cl.exe  /nologo -DWEBP_HAVE_FLAG_MSA -ID:\\Coding\\C++\\Chess\\SDL_image\\external\\libwebp /DWIN32 /D_WINDOWS /W3 NOTFOUND /MDd /Ob0 /Od /RTC1 -Zi /showIncludes /FoCMakeFiles\\cmTC_caec1.dir\\src.c.obj /FdCMakeFiles\\cmTC_caec1.dir\\ /FS -c D:\\Coding\\C++\\Chess\\out\\build\\x64-debug\\CMakeFiles\\CMakeScratch\\TryCompile-ed6rm7\\src.c
+        FAILED: CMakeFiles/cmTC_caec1.dir/src.c.obj 
+        C:\\PROGRA~1\\MIB055~1\\18\\COMMUN~1\\VC\\Tools\\MSVC\\1450~1.357\\bin\\Hostx64\\x64\\cl.exe  /nologo -DWEBP_HAVE_FLAG_MSA -ID:\\Coding\\C++\\Chess\\SDL_image\\external\\libwebp /DWIN32 /D_WINDOWS /W3 NOTFOUND /MDd /Ob0 /Od /RTC1 -Zi /showIncludes /FoCMakeFiles\\cmTC_caec1.dir\\src.c.obj /FdCMakeFiles\\cmTC_caec1.dir\\ /FS -c D:\\Coding\\C++\\Chess\\out\\build\\x64-debug\\CMakeFiles\\CMakeScratch\\TryCompile-ed6rm7\\src.c
+        cl : Command line warning D9024 : unrecognized source file type 'NOTFOUND', object file assumed
+        cl : Command line warning D9027 : source file 'NOTFOUND' ignored
+        D:\\Coding\\C++\\Chess\\out\\build\\x64-debug\\CMakeFiles\\CMakeScratch\\TryCompile-ed6rm7\\src.c(5): error C2065: 'this': undeclared identifier
+        D:\\Coding\\C++\\Chess\\out\\build\\x64-debug\\CMakeFiles\\CMakeScratch\\TryCompile-ed6rm7\\src.c(5): error C2146: syntax error: missing ';' before identifier 'is'
+        D:\\Coding\\C++\\Chess\\out\\build\\x64-debug\\CMakeFiles\\CMakeScratch\\TryCompile-ed6rm7\\src.c(5): error C2065: 'is': undeclared identifier
+        D:\\Coding\\C++\\Chess\\out\\build\\x64-debug\\CMakeFiles\\CMakeScratch\\TryCompile-ed6rm7\\src.c(5): error C2146: syntax error: missing ';' before identifier 'not'
+        D:\\Coding\\C++\\Chess\\out\\build\\x64-debug\\CMakeFiles\\CMakeScratch\\TryCompile-ed6rm7\\src.c(5): error C2065: 'not': undeclared identifier
+        D:\\Coding\\C++\\Chess\\out\\build\\x64-debug\\CMakeFiles\\CMakeScratch\\TryCompile-ed6rm7\\src.c(5): error C2146: syntax error: missing ';' before identifier 'valid'
+        D:\\Coding\\C++\\Chess\\out\\build\\x64-debug\\CMakeFiles\\CMakeScratch\\TryCompile-ed6rm7\\src.c(5): error C2065: 'valid': undeclared identifier
+        D:\\Coding\\C++\\Chess\\out\\build\\x64-debug\\CMakeFiles\\CMakeScratch\\TryCompile-ed6rm7\\src.c(5): error C2146: syntax error: missing ';' before identifier 'code'
+        D:\\Coding\\C++\\Chess\\out\\build\\x64-debug\\CMakeFiles\\CMakeScratch\\TryCompile-ed6rm7\\src.c(5): error C2065: 'code': undeclared identifier
+        D:\\Coding\\C++\\Chess\\out\\build\\x64-debug\\CMakeFiles\\CMakeScratch\\TryCompile-ed6rm7\\src.c(7): error C2143: syntax error: missing ';' before 'return'
+        ninja: build stopped: subcommand failed.
+        
+      exitCode: 1
+...

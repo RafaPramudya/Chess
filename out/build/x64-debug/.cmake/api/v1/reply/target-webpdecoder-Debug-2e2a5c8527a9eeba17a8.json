@@ -1,0 +1,599 @@
+{
+	"artifacts" : 
+	[
+		{
+			"path" : "SDL_image/external/libwebp-build/libwebpdecoder.dll"
+		},
+		{
+			"path" : "SDL_image/external/libwebp-build/libwebpdecoder.lib"
+		},
+		{
+			"path" : "SDL_image/external/libwebp-build/libwebpdecoder.pdb"
+		}
+	],
+	"backtrace" : 1,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_library",
+			"install",
+			"target_link_libraries",
+			"add_definitions",
+			"target_include_directories"
+		],
+		"files" : 
+		[
+			"SDL_image/external/libwebp/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 358,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 732,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 364,
+				"parent" : 0
+			},
+			{
+				"command" : 3,
+				"file" : 0,
+				"line" : 248,
+				"parent" : 0
+			},
+			{
+				"command" : 3,
+				"file" : 0,
+				"line" : 133,
+				"parent" : 0
+			},
+			{
+				"command" : 3,
+				"file" : 0,
+				"line" : 137,
+				"parent" : 0
+			},
+			{
+				"command" : 3,
+				"file" : 0,
+				"line" : 343,
+				"parent" : 0
+			},
+			{
+				"command" : 4,
+				"file" : 0,
+				"line" : 365,
+				"parent" : 0
+			}
+		]
+	},
+	"dependencies" : 
+	[
+		{
+			"id" : "webputilsdecode::@e589a47a917c0d6470d1"
+		},
+		{
+			"id" : "webpdecode::@e589a47a917c0d6470d1"
+		},
+		{
+			"id" : "webpdspdecode::@e589a47a917c0d6470d1"
+		}
+	],
+	"id" : "webpdecoder::@e589a47a917c0d6470d1",
+	"install" : 
+	{
+		"destinations" : 
+		[
+			{
+				"backtrace" : 2,
+				"path" : "lib"
+			},
+			{
+				"backtrace" : 2,
+				"path" : "bin"
+			}
+		],
+		"prefix" : 
+		{
+			"path" : "D:/Coding/C++/Chess/out/install/x64-debug"
+		}
+	},
+	"link" : 
+	{
+		"commandFragments" : 
+		[
+			{
+				"fragment" : "/machine:x64 /debug /INCREMENTAL",
+				"role" : "flags"
+			},
+			{
+				"backtrace" : 3,
+				"fragment" : "shlwapi.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 3,
+				"fragment" : "ole32.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 3,
+				"fragment" : "windowscodecs.lib",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib",
+				"role" : "libraries"
+			}
+		],
+		"language" : "C"
+	},
+	"name" : "webpdecoder",
+	"nameOnDisk" : "libwebpdecoder.dll",
+	"paths" : 
+	{
+		"build" : "SDL_image/external/libwebp-build",
+		"source" : "SDL_image/external/libwebp"
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "Object Libraries",
+			"sourceIndexes" : 
+			[
+				0,
+				1,
+				2,
+				3,
+				4,
+				5,
+				6,
+				7,
+				8,
+				9,
+				10,
+				11,
+				12,
+				13,
+				14,
+				15,
+				16,
+				17,
+				18,
+				19,
+				20,
+				21,
+				22,
+				23,
+				24,
+				25,
+				26,
+				27,
+				28,
+				29,
+				30,
+				31,
+				32,
+				33,
+				34,
+				35,
+				36,
+				37,
+				38,
+				39,
+				40,
+				41,
+				42,
+				43,
+				44,
+				45,
+				46,
+				47,
+				48,
+				49,
+				50,
+				51,
+				52,
+				53,
+				54,
+				55,
+				56,
+				57,
+				58,
+				59,
+				60,
+				61
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 1,
+			"isGenerated" : true,
+			"path" : "out/build/x64-debug/SDL_image/external/libwebp-build/CMakeFiles/webpdecode.dir/src/dec/alpha_dec.c.obj",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"isGenerated" : true,
+			"path" : "out/build/x64-debug/SDL_image/external/libwebp-build/CMakeFiles/webpdecode.dir/src/dec/buffer_dec.c.obj",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"isGenerated" : true,
+			"path" : "out/build/x64-debug/SDL_image/external/libwebp-build/CMakeFiles/webpdecode.dir/src/dec/frame_dec.c.obj",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"isGenerated" : true,
+			"path" : "out/build/x64-debug/SDL_image/external/libwebp-build/CMakeFiles/webpdecode.dir/src/dec/idec_dec.c.obj",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"isGenerated" : true,
+			"path" : "out/build/x64-debug/SDL_image/external/libwebp-build/CMakeFiles/webpdecode.dir/src/dec/io_dec.c.obj",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"isGenerated" : true,
+			"path" : "out/build/x64-debug/SDL_image/external/libwebp-build/CMakeFiles/webpdecode.dir/src/dec/quant_dec.c.obj",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"isGenerated" : true,
+			"path" : "out/build/x64-debug/SDL_image/external/libwebp-build/CMakeFiles/webpdecode.dir/src/dec/tree_dec.c.obj",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"isGenerated" : true,
+			"path" : "out/build/x64-debug/SDL_image/external/libwebp-build/CMakeFiles/webpdecode.dir/src/dec/vp8_dec.c.obj",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"isGenerated" : true,
+			"path" : "out/build/x64-debug/SDL_image/external/libwebp-build/CMakeFiles/webpdecode.dir/src/dec/vp8l_dec.c.obj",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"isGenerated" : true,
+			"path" : "out/build/x64-debug/SDL_image/external/libwebp-build/CMakeFiles/webpdecode.dir/src/dec/webp_dec.c.obj",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"isGenerated" : true,
+			"path" : "out/build/x64-debug/SDL_image/external/libwebp-build/CMakeFiles/webpdspdecode.dir/src/dsp/alpha_processing.c.obj",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"isGenerated" : true,
+			"path" : "out/build/x64-debug/SDL_image/external/libwebp-build/CMakeFiles/webpdspdecode.dir/src/dsp/cpu.c.obj",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"isGenerated" : true,
+			"path" : "out/build/x64-debug/SDL_image/external/libwebp-build/CMakeFiles/webpdspdecode.dir/src/dsp/dec.c.obj",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"isGenerated" : true,
+			"path" : "out/build/x64-debug/SDL_image/external/libwebp-build/CMakeFiles/webpdspdecode.dir/src/dsp/dec_clip_tables.c.obj",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"isGenerated" : true,
+			"path" : "out/build/x64-debug/SDL_image/external/libwebp-build/CMakeFiles/webpdspdecode.dir/src/dsp/filters.c.obj",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"isGenerated" : true,
+			"path" : "out/build/x64-debug/SDL_image/external/libwebp-build/CMakeFiles/webpdspdecode.dir/src/dsp/lossless.c.obj",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"isGenerated" : true,
+			"path" : "out/build/x64-debug/SDL_image/external/libwebp-build/CMakeFiles/webpdspdecode.dir/src/dsp/rescaler.c.obj",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"isGenerated" : true,
+			"path" : "out/build/x64-debug/SDL_image/external/libwebp-build/CMakeFiles/webpdspdecode.dir/src/dsp/upsampling.c.obj",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"isGenerated" : true,
+			"path" : "out/build/x64-debug/SDL_image/external/libwebp-build/CMakeFiles/webpdspdecode.dir/src/dsp/yuv.c.obj",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"isGenerated" : true,
+			"path" : "out/build/x64-debug/SDL_image/external/libwebp-build/CMakeFiles/webpdspdecode.dir/src/dsp/alpha_processing_sse41.c.obj",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"isGenerated" : true,
+			"path" : "out/build/x64-debug/SDL_image/external/libwebp-build/CMakeFiles/webpdspdecode.dir/src/dsp/dec_sse41.c.obj",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"isGenerated" : true,
+			"path" : "out/build/x64-debug/SDL_image/external/libwebp-build/CMakeFiles/webpdspdecode.dir/src/dsp/lossless_sse41.c.obj",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"isGenerated" : true,
+			"path" : "out/build/x64-debug/SDL_image/external/libwebp-build/CMakeFiles/webpdspdecode.dir/src/dsp/upsampling_sse41.c.obj",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"isGenerated" : true,
+			"path" : "out/build/x64-debug/SDL_image/external/libwebp-build/CMakeFiles/webpdspdecode.dir/src/dsp/yuv_sse41.c.obj",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"isGenerated" : true,
+			"path" : "out/build/x64-debug/SDL_image/external/libwebp-build/CMakeFiles/webpdspdecode.dir/src/dsp/alpha_processing_sse2.c.obj",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"isGenerated" : true,
+			"path" : "out/build/x64-debug/SDL_image/external/libwebp-build/CMakeFiles/webpdspdecode.dir/src/dsp/dec_sse2.c.obj",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"isGenerated" : true,
+			"path" : "out/build/x64-debug/SDL_image/external/libwebp-build/CMakeFiles/webpdspdecode.dir/src/dsp/filters_sse2.c.obj",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"isGenerated" : true,
+			"path" : "out/build/x64-debug/SDL_image/external/libwebp-build/CMakeFiles/webpdspdecode.dir/src/dsp/lossless_sse2.c.obj",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"isGenerated" : true,
+			"path" : "out/build/x64-debug/SDL_image/external/libwebp-build/CMakeFiles/webpdspdecode.dir/src/dsp/rescaler_sse2.c.obj",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"isGenerated" : true,
+			"path" : "out/build/x64-debug/SDL_image/external/libwebp-build/CMakeFiles/webpdspdecode.dir/src/dsp/upsampling_sse2.c.obj",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"isGenerated" : true,
+			"path" : "out/build/x64-debug/SDL_image/external/libwebp-build/CMakeFiles/webpdspdecode.dir/src/dsp/yuv_sse2.c.obj",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"isGenerated" : true,
+			"path" : "out/build/x64-debug/SDL_image/external/libwebp-build/CMakeFiles/webpdspdecode.dir/src/dsp/alpha_processing_neon.c.obj",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"isGenerated" : true,
+			"path" : "out/build/x64-debug/SDL_image/external/libwebp-build/CMakeFiles/webpdspdecode.dir/src/dsp/dec_neon.c.obj",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"isGenerated" : true,
+			"path" : "out/build/x64-debug/SDL_image/external/libwebp-build/CMakeFiles/webpdspdecode.dir/src/dsp/filters_neon.c.obj",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"isGenerated" : true,
+			"path" : "out/build/x64-debug/SDL_image/external/libwebp-build/CMakeFiles/webpdspdecode.dir/src/dsp/lossless_neon.c.obj",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"isGenerated" : true,
+			"path" : "out/build/x64-debug/SDL_image/external/libwebp-build/CMakeFiles/webpdspdecode.dir/src/dsp/rescaler_neon.c.obj",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"isGenerated" : true,
+			"path" : "out/build/x64-debug/SDL_image/external/libwebp-build/CMakeFiles/webpdspdecode.dir/src/dsp/upsampling_neon.c.obj",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"isGenerated" : true,
+			"path" : "out/build/x64-debug/SDL_image/external/libwebp-build/CMakeFiles/webpdspdecode.dir/src/dsp/yuv_neon.c.obj",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"isGenerated" : true,
+			"path" : "out/build/x64-debug/SDL_image/external/libwebp-build/CMakeFiles/webpdspdecode.dir/src/dsp/dec_msa.c.obj",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"isGenerated" : true,
+			"path" : "out/build/x64-debug/SDL_image/external/libwebp-build/CMakeFiles/webpdspdecode.dir/src/dsp/filters_msa.c.obj",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"isGenerated" : true,
+			"path" : "out/build/x64-debug/SDL_image/external/libwebp-build/CMakeFiles/webpdspdecode.dir/src/dsp/lossless_msa.c.obj",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"isGenerated" : true,
+			"path" : "out/build/x64-debug/SDL_image/external/libwebp-build/CMakeFiles/webpdspdecode.dir/src/dsp/rescaler_msa.c.obj",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"isGenerated" : true,
+			"path" : "out/build/x64-debug/SDL_image/external/libwebp-build/CMakeFiles/webpdspdecode.dir/src/dsp/upsampling_msa.c.obj",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"isGenerated" : true,
+			"path" : "out/build/x64-debug/SDL_image/external/libwebp-build/CMakeFiles/webpdspdecode.dir/src/dsp/dec_mips32.c.obj",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"isGenerated" : true,
+			"path" : "out/build/x64-debug/SDL_image/external/libwebp-build/CMakeFiles/webpdspdecode.dir/src/dsp/rescaler_mips32.c.obj",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"isGenerated" : true,
+			"path" : "out/build/x64-debug/SDL_image/external/libwebp-build/CMakeFiles/webpdspdecode.dir/src/dsp/yuv_mips32.c.obj",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"isGenerated" : true,
+			"path" : "out/build/x64-debug/SDL_image/external/libwebp-build/CMakeFiles/webpdspdecode.dir/src/dsp/alpha_processing_mips_dsp_r2.c.obj",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"isGenerated" : true,
+			"path" : "out/build/x64-debug/SDL_image/external/libwebp-build/CMakeFiles/webpdspdecode.dir/src/dsp/dec_mips_dsp_r2.c.obj",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"isGenerated" : true,
+			"path" : "out/build/x64-debug/SDL_image/external/libwebp-build/CMakeFiles/webpdspdecode.dir/src/dsp/filters_mips_dsp_r2.c.obj",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"isGenerated" : true,
+			"path" : "out/build/x64-debug/SDL_image/external/libwebp-build/CMakeFiles/webpdspdecode.dir/src/dsp/lossless_mips_dsp_r2.c.obj",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"isGenerated" : true,
+			"path" : "out/build/x64-debug/SDL_image/external/libwebp-build/CMakeFiles/webpdspdecode.dir/src/dsp/rescaler_mips_dsp_r2.c.obj",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"isGenerated" : true,
+			"path" : "out/build/x64-debug/SDL_image/external/libwebp-build/CMakeFiles/webpdspdecode.dir/src/dsp/upsampling_mips_dsp_r2.c.obj",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"isGenerated" : true,
+			"path" : "out/build/x64-debug/SDL_image/external/libwebp-build/CMakeFiles/webpdspdecode.dir/src/dsp/yuv_mips_dsp_r2.c.obj",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"isGenerated" : true,
+			"path" : "out/build/x64-debug/SDL_image/external/libwebp-build/CMakeFiles/webputilsdecode.dir/src/utils/bit_reader_utils.c.obj",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"isGenerated" : true,
+			"path" : "out/build/x64-debug/SDL_image/external/libwebp-build/CMakeFiles/webputilsdecode.dir/src/utils/color_cache_utils.c.obj",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"isGenerated" : true,
+			"path" : "out/build/x64-debug/SDL_image/external/libwebp-build/CMakeFiles/webputilsdecode.dir/src/utils/filters_utils.c.obj",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"isGenerated" : true,
+			"path" : "out/build/x64-debug/SDL_image/external/libwebp-build/CMakeFiles/webputilsdecode.dir/src/utils/huffman_utils.c.obj",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"isGenerated" : true,
+			"path" : "out/build/x64-debug/SDL_image/external/libwebp-build/CMakeFiles/webputilsdecode.dir/src/utils/quant_levels_dec_utils.c.obj",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"isGenerated" : true,
+			"path" : "out/build/x64-debug/SDL_image/external/libwebp-build/CMakeFiles/webputilsdecode.dir/src/utils/rescaler_utils.c.obj",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"isGenerated" : true,
+			"path" : "out/build/x64-debug/SDL_image/external/libwebp-build/CMakeFiles/webputilsdecode.dir/src/utils/random_utils.c.obj",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"isGenerated" : true,
+			"path" : "out/build/x64-debug/SDL_image/external/libwebp-build/CMakeFiles/webputilsdecode.dir/src/utils/thread_utils.c.obj",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"isGenerated" : true,
+			"path" : "out/build/x64-debug/SDL_image/external/libwebp-build/CMakeFiles/webputilsdecode.dir/src/utils/utils.c.obj",
+			"sourceGroupIndex" : 0
+		}
+	],
+	"type" : "SHARED_LIBRARY"
+}
