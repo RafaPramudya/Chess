@@ -41,7 +41,9 @@ public:
 	Piece() : id(NONE) {}
 
 	bool isWhite() const { return id & Type::WHITE; };
-	char getNotation() { return notation[id]; }
+
+	char getNotation() const { return notation[id]; }
+	uint8_t getId() const { return id; }
 };
 
 class Square {
@@ -62,6 +64,7 @@ private:
 public:
 	Square() : index(0) {};
 	Square(uint8_t index) : index(index) {};
+	Square(char file, uint8_t rank) : index((file - 'a') * 8 + rank) {};
 	Square(const char* tile) {
 		assert(std::strlen(tile) == 2);
 

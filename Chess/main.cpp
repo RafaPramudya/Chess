@@ -11,6 +11,8 @@ int main(int argc, char* argv[])
 	Board board(Board::defaultFen);
 	board.printBoard();
 
+	chess.setBoard(&board);
+
 	while (chess.isRunning()) {
 		chess.event();
 		chess.render();
