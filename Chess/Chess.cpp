@@ -100,6 +100,8 @@ void Board::makeMove(Move& move)
 
 	piecesPlaced[move.targetSquare.getIndex()] = startPiece;
 	piecesPlaced[move.startSquare.getIndex()] = Piece();
+
+	whiteToMove = !whiteToMove;
 }
 
 void Board::printBoard(bool whiteSide)

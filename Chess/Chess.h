@@ -154,9 +154,9 @@ private:
 	uint16_t halfMove = 0;
 	uint16_t fullMove = 0;
 
-	bool whiteToMove = true;
 public:
 	constexpr static const char* defaultFen = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
+	bool whiteToMove = true;
 
 	Board();
 	Board(Piece* pieceArray);

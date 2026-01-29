@@ -64,6 +64,7 @@ void Game::event()
 				}
 				else {
 					if ((piece.getId() % 8) == Piece::NONE) break;
+					if (piece.isWhite() != board->whiteToMove) break;
 					wantedMove.startSquare = selectedSquare;
 
 					validMoves = Move::generateValidMoves(wantedMove.startSquare, board->getPieces());
