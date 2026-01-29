@@ -81,6 +81,16 @@ Board::Board(const char* fenNotation)
 	}
 }
 
+void Board::makeMove(Move& move)
+{
+	if (!move.startSquare || !move.targetSquare) throw std::exception("Error Move Invalid");
+
+	auto& startPiece = piecesPlaced[move.startSquare.getIndex()];
+
+	piecesPlaced[move.targetSquare.getIndex()] = startPiece;
+	piecesPlaced[move.startSquare.getIndex()] = Piece();
+}
+
 void Board::printBoard(bool whiteSide)
 {
 	std::printf("Board :\n");

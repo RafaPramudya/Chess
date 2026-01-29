@@ -59,10 +59,11 @@ private:
 		"F1", "F2", "F3", "F4", "F5", "F6", "F7", "F8",
 		"G1", "G2", "G3", "G4", "G5", "G6", "G7", "G8",
 		"H1", "H2", "H3", "H4", "H5", "H6", "H7", "H8",
+		"NULL"
 	};
 
 public:
-	Square() : index(0) {};
+	Square() : index(64) {};
 	Square(uint8_t index) : index(index) {};
 	Square(char file, uint8_t rank) : index((file - 'a') * 8 + rank) {};
 	Square(const char* tile) {
@@ -77,15 +78,24 @@ public:
 	const char* getNotation() const {
 		return notation[index];
 	}
+
+	explicit operator bool() {
+		return index < 64;
+	}
+
+	bool operator==(const Square& other) const {
+		return this->index == other.index;
+	}
 };
 
 class Move {
-private:
+public:
 	Square startSquare;
 	Square targetSquare;
 
 	Piece movingPiece;
-public:
+	bool executed = false;
+
 	enum Direction : int8_t {
 		RIGHT = 1,
 		LEFT = -1,
@@ -98,7 +108,9 @@ public:
 		DR = DOWN + RIGHT
 	};
 
-	Move(Square start, Square target, Piece piece);
+	Move() {}
+	Move(Square start, Square target, Piece piece) 
+		: startSquare(start), targetSquare(target), movingPiece(piece) {}
 
 	static std::vector<Move> generateMoves(Piece* piecesArray, bool whiteToPlay);
 };
@@ -127,6 +139,7 @@ public:
 	Board(const char* fenNotation);
 
 	Piece* getPieces() { return piecesPlaced; }
+	Piece& getPiece(Square square) { return piecesPlaced[square.getIndex()]; }
 
 	void makeMove(Move& move);
 	void unmakeMove(Move& move);

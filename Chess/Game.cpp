@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <exception>
+#include <cmath>
 
 #include <SDL3_image/SDL_image.h>
 
@@ -42,6 +43,31 @@ void Game::event()
 		case SDL_EVENT_QUIT:
 			running = false;
 			break;
+		case SDL_EVENT_MOUSE_BUTTON_DOWN:
+		{
+			auto buttonEvent = e.button;
+			if (buttonEvent.type == SDL_EVENT_MOUSE_BUTTON_DOWN) {
+				Square selectedSquare((7 - (int)std::floor(buttonEvent.y / 100)) * 8 + (int)std::floor(buttonEvent.x / 100));
+			
+				auto& piece = board->getPiece(selectedSquare);
+
+				std::printf("Selected Square %s, Piece %c\n", selectedSquare.getNotation(), piece.getNotation());
+				if (wantedMove.startSquare) {
+					if (wantedMove.startSquare == selectedSquare) { wantedMove.startSquare = Square(64); break; }
+					wantedMove.targetSquare = selectedSquare;
+
+					board->makeMove(wantedMove);
+
+					wantedMove.startSquare	= Square(64);
+					wantedMove.targetSquare = Square(64);
+				}
+				else {
+					if ((piece.getId() % 8) == Piece::NONE) break;
+					wantedMove.startSquare = selectedSquare;
+				}
+			}
+		}
+		break;
 		default:
 			break;
 		}

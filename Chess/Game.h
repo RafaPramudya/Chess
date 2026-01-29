@@ -44,6 +44,7 @@ private:
 	bool running = false;
 
 	Board* board = nullptr;
+	Move wantedMove;
 public:
 	Game();
 	~Game();
