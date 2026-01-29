@@ -46,6 +46,7 @@ private:
 
 	Board* board = nullptr;
 	Move wantedMove;
+	std::vector<Move> validMoves;
 public:
 	Game();
 	~Game();

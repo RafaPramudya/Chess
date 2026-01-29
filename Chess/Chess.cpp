@@ -7,7 +7,7 @@ Piece::Piece(uint8_t id)
 
 Piece::Piece(Piece::Type type, bool isWhite)
 {
-	this->id = isWhite ? type : type + Type::WHITE;
+	this->id = isWhite ? type : type + Type::BLACK;
 }
 
 Board::Board()
@@ -83,9 +83,20 @@ Board::Board(const char* fenNotation)
 
 void Board::makeMove(Move& move)
 {
-	if (!move.startSquare || !move.targetSquare) throw std::exception("Error Move Invalid");
+	if (!move.startSquare || !move.targetSquare) throw std::exception("Error Square Invalid Value");
 
 	auto& startPiece = piecesPlaced[move.startSquare.getIndex()];
+
+	std::vector<Move> validMoves = Move::generateValidMoves(move.startSquare, getPieces());
+	bool valid = false;
+
+	for (const auto& validMove : validMoves) {
+		if (validMove.targetSquare == move.targetSquare) {
+			valid = true;
+			break;
+		}
+	}
+	if (!valid) return;
 
 	piecesPlaced[move.targetSquare.getIndex()] = startPiece;
 	piecesPlaced[move.startSquare.getIndex()] = Piece();
@@ -118,4 +129,250 @@ void Board::printBoard(bool whiteSide)
 			std::printf("| %d\n", rank + 1);
 		}
 	}
+}
+
+std::vector<Move> Move::generateValidMoves(Square square, Piece* piecesArray)
+{
+	assert((bool) square);
+	Piece& piece = piecesArray[square.getIndex()];
+	std::vector<Move> results;
+
+	switch ((piece.getId() % 8)) {
+	case Piece::PAWN:
+	{
+		Square targetSquare;
+		Square doubleSquare;
+
+		if (piece.isWhite()) {
+			targetSquare = square + UP;
+
+			if ((square.getIndex() / 8) == 1)
+				doubleSquare = square + 2 * UP;
+		}
+		else {
+			targetSquare = square + DOWN;
+
+			if ((square.getIndex() / 8) == 6)
+				doubleSquare = square + 2 * DOWN;
+		}
+
+		// Move
+		if (!encounterObstacle(targetSquare, piecesArray)) { 
+			results.emplace_back(targetSquare);
+			if (doubleSquare && !encounterObstacle(doubleSquare, piecesArray)) results.emplace_back(doubleSquare);
+		}
+
+		// Capture
+		if (encounterObstacle(targetSquare + LEFT, piecesArray).isEnemy(piece)) results.emplace_back(targetSquare + LEFT);
+		if (encounterObstacle(targetSquare + RIGHT, piecesArray).isEnemy(piece)) results.emplace_back(targetSquare + RIGHT);
+	}
+		break;
+	case Piece::KNIGHT:
+	{
+		Square moveSquare[8] = {
+			square + 2 * LEFT + UP, square + 2 * LEFT + DOWN,
+			square + 2 * RIGHT + UP, square + 2 * RIGHT + DOWN,
+			square + 2 * UP + LEFT, square + 2 * UP + RIGHT,
+			square + 2 * DOWN + LEFT, square + 2 * DOWN + RIGHT,
+		};
+
+		for (int i = 0; i < 8; i++) {
+			Square targetSquare = moveSquare[i];
+
+			// Exceptions
+			if (!targetSquare) continue;
+			if (square.getFile() <= 1 && targetSquare.getFile() >= 6) continue;
+			if (square.getFile() >= 6 && targetSquare.getFile() <= 1) continue;
+
+			auto obstacle = encounterObstacle(targetSquare, piecesArray);
+			if (!obstacle) results.emplace_back(targetSquare); // Move
+			else if (piece.isEnemy(obstacle)) results.emplace_back(targetSquare); // Capture
+		}
+	}
+		break;
+	case Piece::BISHOP:
+	{
+		// UL
+		Piece obstacle;
+		Square targetSquare = square;
+		while (!obstacle && targetSquare.getFile() != 0 && targetSquare.getRank() != 7) {
+			targetSquare = targetSquare + UP + LEFT;
+			obstacle = encounterObstacle(targetSquare, piecesArray);
+
+			if (!obstacle || piece.isEnemy(obstacle)) results.emplace_back(targetSquare);
+		}
+
+		// UR
+		obstacle = Piece();
+		targetSquare = square;
+		while (!obstacle && targetSquare.getFile() != 7 && targetSquare.getRank() != 7) {
+			targetSquare = targetSquare + UP + RIGHT;
+			obstacle = encounterObstacle(targetSquare, piecesArray);
+
+			if (!obstacle || piece.isEnemy(obstacle)) results.emplace_back(targetSquare);
+		}
+
+		// DL
+		obstacle = Piece();
+		targetSquare = square;
+		while (!obstacle && targetSquare.getFile() != 0 && targetSquare.getRank() != 0) {
+			targetSquare = targetSquare + DOWN + LEFT;
+			obstacle = encounterObstacle(targetSquare, piecesArray);
+
+			if (!obstacle || piece.isEnemy(obstacle)) results.emplace_back(targetSquare);
+		}
+
+		// DR
+		obstacle = Piece();
+		targetSquare = square;
+		while (!obstacle && targetSquare.getFile() != 7 && targetSquare.getRank() != 0) {
+			targetSquare = targetSquare + DOWN + RIGHT;
+			obstacle = encounterObstacle(targetSquare, piecesArray);
+
+			if (!obstacle || piece.isEnemy(obstacle)) results.emplace_back(targetSquare);
+		}
+	}
+		break;
+	case Piece::ROOK:
+	{
+		Piece obstacle;
+		Square targetSquare = square;
+		while (!obstacle && targetSquare.getFile() != 0) {
+			targetSquare = targetSquare + LEFT;
+			obstacle = encounterObstacle(targetSquare, piecesArray);
+
+			if (!obstacle || piece.isEnemy(obstacle)) results.emplace_back(targetSquare);
+		}
+
+		obstacle = Piece();
+		targetSquare = square;
+		while (!obstacle && targetSquare.getFile() != 7) {
+			targetSquare = targetSquare + RIGHT;
+			obstacle = encounterObstacle(targetSquare, piecesArray);
+
+			if (!obstacle || piece.isEnemy(obstacle)) results.emplace_back(targetSquare);
+		}
+
+		obstacle = Piece();
+		targetSquare = square;
+		while (!obstacle && targetSquare.getRank() != 0) {
+			targetSquare = targetSquare + DOWN;
+			obstacle = encounterObstacle(targetSquare, piecesArray);
+
+			if (!obstacle || piece.isEnemy(obstacle)) results.emplace_back(targetSquare);
+		}
+
+		obstacle = Piece();
+		targetSquare = square;
+		while (!obstacle && targetSquare.getRank() != 7) {
+			targetSquare = targetSquare + UP;
+			obstacle = encounterObstacle(targetSquare, piecesArray);
+
+			if (!obstacle || piece.isEnemy(obstacle)) results.emplace_back(targetSquare);
+		}
+	}
+		break;
+	case Piece::QUEEN:
+	{
+		Piece obstacle;
+		Square targetSquare = square;
+		while (!obstacle && targetSquare.getFile() != 0) {
+			targetSquare = targetSquare + LEFT;
+			obstacle = encounterObstacle(targetSquare, piecesArray);
+
+			if (!obstacle || piece.isEnemy(obstacle)) results.emplace_back(targetSquare);
+		}
+
+		obstacle = Piece();
+		targetSquare = square;
+		while (!obstacle && targetSquare.getFile() != 7) {
+			targetSquare = targetSquare + RIGHT;
+			obstacle = encounterObstacle(targetSquare, piecesArray);
+
+			if (!obstacle || piece.isEnemy(obstacle)) results.emplace_back(targetSquare);
+		}
+
+		obstacle = Piece();
+		targetSquare = square;
+		while (!obstacle && targetSquare.getRank() != 0) {
+			targetSquare = targetSquare + DOWN;
+			obstacle = encounterObstacle(targetSquare, piecesArray);
+
+			if (!obstacle || piece.isEnemy(obstacle)) results.emplace_back(targetSquare);
+		}
+
+		obstacle = Piece();
+		targetSquare = square;
+		while (!obstacle && targetSquare.getRank() != 7) {
+			targetSquare = targetSquare + UP;
+			obstacle = encounterObstacle(targetSquare, piecesArray);
+
+			if (!obstacle || piece.isEnemy(obstacle)) results.emplace_back(targetSquare);
+		}
+
+		// UL
+		obstacle = Piece();
+		targetSquare = square;
+		while (!obstacle && targetSquare.getFile() != 0 && targetSquare.getRank() != 7) {
+			targetSquare = targetSquare + UP + LEFT;
+			obstacle = encounterObstacle(targetSquare, piecesArray);
+
+			if (!obstacle || piece.isEnemy(obstacle)) results.emplace_back(targetSquare);
+		}
+
+		// UR
+		obstacle = Piece();
+		targetSquare = square;
+		while (!obstacle && targetSquare.getFile() != 7 && targetSquare.getRank() != 7) {
+			targetSquare = targetSquare + UP + RIGHT;
+			obstacle = encounterObstacle(targetSquare, piecesArray);
+
+			if (!obstacle || piece.isEnemy(obstacle)) results.emplace_back(targetSquare);
+		}
+
+		// DL
+		obstacle = Piece();
+		targetSquare = square;
+		while (!obstacle && targetSquare.getFile() != 0 && targetSquare.getRank() != 0) {
+			targetSquare = targetSquare + DOWN + LEFT;
+			obstacle = encounterObstacle(targetSquare, piecesArray);
+
+			if (!obstacle || piece.isEnemy(obstacle)) results.emplace_back(targetSquare);
+		}
+
+		// DR
+		obstacle = Piece();
+		targetSquare = square;
+		while (!obstacle && targetSquare.getFile() != 7 && targetSquare.getRank() != 0) {
+			targetSquare = targetSquare + DOWN + RIGHT;
+			obstacle = encounterObstacle(targetSquare, piecesArray);
+
+			if (!obstacle || piece.isEnemy(obstacle)) results.emplace_back(targetSquare);
+		}
+	}
+		break;
+	case Piece::KING:
+	{
+		Square movingSquare[8] = {
+			square + LEFT, square + RIGHT,
+			square + UP, square + DOWN,
+			square + LEFT + UP, square + RIGHT + UP,
+			square + LEFT + DOWN, square + RIGHT + DOWN,
+		};
+
+		for (int i = 0; i < 8; i++) {
+			Square targetSquare = movingSquare[i];
+			if (square.getFile() == 0 && targetSquare.getFile() == 7) continue;
+			if (square.getFile() == 7 && targetSquare.getFile() == 0) continue;
+
+			auto obstacle = encounterObstacle(targetSquare, piecesArray);
+			if (!obstacle || piece.isEnemy(obstacle)) results.emplace_back(targetSquare);
+		}
+	}
+		break;
+	default:
+		break;
+	}
+
+	return results;
 }

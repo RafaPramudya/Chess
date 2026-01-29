@@ -33,17 +33,23 @@ public:
 		QUEEN = 5,
 		KING = 6,
 
-		WHITE = 8
+		BLACK = 8
 	};
 
 	Piece(uint8_t id);
 	Piece(Piece::Type type, bool isWhite);
 	Piece() : id(NONE) {}
 
-	bool isWhite() const { return id & Type::WHITE; };
+	bool isBlack() const { return id & Type::BLACK; }
+	bool isWhite() const { return !isBlack(); }
+	bool isEnemy(Piece& other) const { return (isBlack() ^ other.isBlack()) && !(id == 0 || id == 7); }
 
 	char getNotation() const { return notation[id]; }
 	uint8_t getId() const { return id; }
+
+	explicit operator bool() const {
+		return (id != NONE && id != BLACK);
+	}
 };
 
 class Square {
@@ -75,6 +81,12 @@ public:
 	uint8_t getIndex() const {
 		return index;
 	}
+	uint8_t getRank() const {
+		return index / 8;
+	}
+	uint8_t getFile() const {
+		return index % 8;
+	}
 	const char* getNotation() const {
 		return notation[index];
 	}
@@ -86,9 +98,19 @@ public:
 	bool operator==(const Square& other) const {
 		return this->index == other.index;
 	}
+	Square operator+(const int value) {
+		return Square(index + value);
+	}
 };
 
 class Move {
+private:
+	static inline Piece encounterObstacle(Square sq, Piece* piecesArray) {
+		if (!sq) return Piece();
+		auto& piece = piecesArray[sq.getIndex()];
+
+		return (piece.getId() % 8) ? piece : Piece() ;
+	};
 public:
 	Square startSquare;
 	Square targetSquare;
@@ -111,7 +133,9 @@ public:
 	Move() {}
 	Move(Square start, Square target, Piece piece) 
 		: startSquare(start), targetSquare(target), movingPiece(piece) {}
+	Move(Square target) : targetSquare(target) {}
 
+	static std::vector<Move> generateValidMoves(Square square, Piece* piecesArray); 
 	static std::vector<Move> generateMoves(Piece* piecesArray, bool whiteToPlay);
 };
 

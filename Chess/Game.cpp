@@ -47,8 +47,9 @@ void Game::event()
 		{
 			auto buttonEvent = e.button;
 			if (buttonEvent.type == SDL_EVENT_MOUSE_BUTTON_DOWN) {
-				Square selectedSquare((7 - (int)std::floor(buttonEvent.y / 100)) * 8 + (int)std::floor(buttonEvent.x / 100));
-			
+				Square selectedSquare;
+				if (whiteSideRender)	selectedSquare = ((7 - (int)std::floor(buttonEvent.y / 100)) * 8 + (int)std::floor(buttonEvent.x / 100));
+				else					selectedSquare = (((int)std::floor(buttonEvent.y / 100)) * 8 + 7 - (int)std::floor(buttonEvent.x / 100));
 				auto& piece = board->getPiece(selectedSquare);
 
 				std::printf("Selected Square %s, Piece %c\n", selectedSquare.getNotation(), piece.getNotation());
@@ -64,6 +65,8 @@ void Game::event()
 				else {
 					if ((piece.getId() % 8) == Piece::NONE) break;
 					wantedMove.startSquare = selectedSquare;
+
+					validMoves = Move::generateValidMoves(wantedMove.startSquare, board->getPieces());
 				}
 			}
 		}
@@ -118,6 +121,38 @@ void Game::render()
 			SDL_RenderFillRect(renderer, &drawRect);
 		}
 	}
+
+	if (wantedMove.startSquare) {
+		SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
+
+		for (auto& move : validMoves) {
+			auto validSquare = move.targetSquare;
+			int rank = validSquare.getRank();
+			int file = validSquare.getFile();
+
+			if (whiteSideRender) {
+				const auto drawRect = SDL_FRect{
+					.x = static_cast<float>(file * BOARD_WIDTH / 8),
+					.y = static_cast<float>((7 - rank) * BOARD_HEIGHT / 8),
+					.w = BOARD_WIDTH / 8,
+					.h = BOARD_HEIGHT / 8
+				};
+
+				SDL_RenderFillRect(renderer, &drawRect);
+			}
+			else {
+				const auto drawRect = SDL_FRect{
+					.x = static_cast<float>((7 - file) *BOARD_WIDTH / 8),
+					.y = static_cast<float>(rank * BOARD_HEIGHT / 8),
+					.w = BOARD_WIDTH / 8,
+					.h = BOARD_HEIGHT / 8
+				};
+
+				SDL_RenderFillRect(renderer, &drawRect);
+			}
+		}
+	}
+
 
 	if (whiteSideRender) {
 		for (int rank = 7; rank >= 0; rank--) {
