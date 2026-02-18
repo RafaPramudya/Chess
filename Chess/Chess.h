@@ -46,6 +46,7 @@ public:
 
 	char getNotation() const { return notation[id]; }
 	uint8_t getId() const { return id; }
+	uint8_t getType() const { return id % 8; }
 
 	explicit operator bool() const {
 		return (id != NONE && id != BLACK);
@@ -76,7 +77,6 @@ public:
 		assert(std::strlen(tile) == 2);
 
 		index = (tile[1] - '1') * 8 + (tile[0] - 'a');
-		std::printf("%d\n", index);
 	}
 
 	uint8_t getIndex() const {
@@ -109,8 +109,16 @@ public:
 	Square startSquare;
 	Square targetSquare;
 
-	Piece movingPiece;
-	bool executed = false;
+	Piece capturedPiece;
+
+	// Special Move
+	struct {
+		bool enPassant	: 1 = false;
+		bool castle		: 1 = false;
+
+		bool lastBoardWhiteCheck : 1 = false;
+		bool lastBoardBlackCheck : 1 = false;
+	};
 
 	enum Direction : int8_t {
 		RIGHT = 1,
@@ -126,7 +134,7 @@ public:
 
 	Move() {}
 	Move(Square start, Square target, Piece piece) 
-		: startSquare(start), targetSquare(target), movingPiece(piece) {}
+		: startSquare(start), targetSquare(target), capturedPiece(piece) {}
 	Move(Square target) : targetSquare(target) {}
 
 	static std::vector<Move> generateValidMoves(Square square, Board* board); 
@@ -139,17 +147,27 @@ private:
 
 	Square enPassantSquare;
 
-	bool whiteKingCastle = false;		
-	bool whiteQueenCastle = false;	
-	bool blackKingCastle = false;		
-	bool blackQueenCastle = false;	
+	struct {
+		bool whiteKingCastle	: 1 = false;
+		bool whiteQueenCastle	: 1 = false;
+		bool blackKingCastle	: 1 = false;
+		bool blackQueenCastle	: 1 = false;
+
+		bool blackKingChecked	: 1 = false;
+		bool whiteKingChecked	: 1 = false;
+
+		bool whiteToMove		: 1  = true;
+	};
+private:
+	Square whiteKingSquare;
+	Square blackKingSquare;
 
 	uint16_t halfMove = 0;
 	uint16_t fullMove = 0;
-
+	
+	std::vector<Move> moveRecord;
 public:
 	constexpr static const char* defaultFen = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
-	bool whiteToMove = true;
 
 	Board();
 	Board(Piece* pieceArray);
@@ -159,9 +177,22 @@ public:
 	Piece getPiece(Square square) { return (square) ? piecesPlaced[square.getIndex()] : Piece(); }
 
 	void makeMove(Move& move);
-	void unmakeMove(Move& move);
+	void unMakeMove(Move move);
+
+	void addMoveRecord(Move& move) { moveRecord.emplace_back(move); }
+	Move getMoveRecord() { if (moveRecord.empty()) return Move();  auto move = moveRecord.back(); moveRecord.pop_back(); return move; }
 
 	void printBoard(bool whiteSide = true);
+
+	bool isSquareAttacked(Square sq, bool attackerIsWhite);
+	void analyzeCheck();
+	bool analyzeCheck(bool white);
+
+	bool isWhiteToMove() const { return whiteToMove; }
+	void setWhiteToMove(bool flag) { whiteToMove = flag; }
+
+	bool isWhiteChecked() const { return whiteKingChecked; }
+	bool isBlackChecked() const { return blackKingChecked; }
 
 	bool getWhiteKingCastle  () const { return whiteKingCastle ; }
 	bool getWhiteQueenCastle () const { return whiteQueenCastle; }
@@ -172,6 +203,12 @@ public:
 	void setWhiteQueenCastle (bool flag) { whiteQueenCastle = flag; }
 	void setBlackKingCastle  (bool flag) { blackKingCastle  = flag; }
 	void setBlackQueenCastle (bool flag) { blackQueenCastle = flag; }
+
+	Square getWhiteKingSquare() const { return whiteKingSquare; }
+	Square getBlackKingSquare() const { return blackKingSquare; }
+
+	void setWhiteKingSquare(Square square) { whiteKingSquare = square; }
+	void setBlackKingSquare(Square square) { blackKingSquare = square; }
 
 	Square getEnPassant() const { return enPassantSquare; }
 	void setEnPassant(const Square& square) { enPassantSquare = square; }
