@@ -14,13 +14,6 @@ Piece::Piece(Piece::Type type, bool isWhite)
 
 bool Board::isSquareAttacked(Square sq, bool attackerIsWhite)
 {
-	Square knightMoveSquare[8] = {
-		sq + 2 * Move::LEFT + Move::UP,		sq + 2 * Move::LEFT + Move::DOWN,
-		sq + 2 * Move::RIGHT + Move::UP,	sq + 2 * Move::RIGHT + Move::DOWN,
-		sq + 2 * Move::UP + Move::LEFT,		sq + 2 * Move::UP + Move::RIGHT,
-		sq + 2 * Move::DOWN + Move::LEFT,	sq + 2 * Move::DOWN + Move::RIGHT,
-	};
-
 	// LEFT
 	Piece obstacle;
 	Square targetSquare = sq;
@@ -118,6 +111,13 @@ bool Board::isSquareAttacked(Square sq, bool attackerIsWhite)
 		}
 	}
 	// Knight
+	Square knightMoveSquare[8] = {
+		sq + 2 * Move::LEFT + Move::UP,		sq + 2 * Move::LEFT + Move::DOWN,
+		sq + 2 * Move::RIGHT + Move::UP,	sq + 2 * Move::RIGHT + Move::DOWN,
+		sq + 2 * Move::UP + Move::LEFT,		sq + 2 * Move::UP + Move::RIGHT,
+		sq + 2 * Move::DOWN + Move::LEFT,	sq + 2 * Move::DOWN + Move::RIGHT,
+	};
+
 	for (int i = 0; i < 8; i++) {
 		Square targetSquare = knightMoveSquare[i];
 
@@ -144,6 +144,24 @@ bool Board::isSquareAttacked(Square sq, bool attackerIsWhite)
 		if (sq.getFile() != 0 && dlPiece.getType() == Piece::PAWN && (dlPiece.isWhite() == attackerIsWhite)) { return true; }
 		if (sq.getFile() != 7 && drPiece.getType() == Piece::PAWN && (drPiece.isWhite() == attackerIsWhite)) { return true; }
 	}
+	// King
+	Square kingMoveSquare[8] = {
+		sq + Move::UP, sq + Move::DOWN,
+		sq + Move::LEFT, sq + Move::RIGHT,
+		sq + Move::UP + Move::LEFT, sq + Move::UP + Move::RIGHT,
+		sq + Move::DOWN + Move::LEFT, sq + Move::DOWN + Move::RIGHT,
+	};
+
+	for (int i = 0; i < 8; i++) {
+		Square targetSquare = kingMoveSquare[i];
+
+		if (!targetSquare) continue;
+		if (sq.getFile() <= 1 && targetSquare.getFile() >= 6) continue;
+		if (sq.getFile() >= 6 && targetSquare.getFile() <= 1) continue;
+
+		auto obstacle = getPiece(targetSquare);
+		if (obstacle.getType() == Piece::KING && (obstacle.isWhite() == attackerIsWhite)) { return true; }
+	}
 
 	return false;
 }
@@ -156,7 +174,7 @@ void Board::analyzeCheck()
 
 bool Board::analyzeCheck(bool white)
 {
-	return isSquareAttacked((white) ? whiteKingSquare : blackKingSquare, false);
+	return isSquareAttacked((white) ? whiteKingSquare : blackKingSquare, !white);
 }
 
 Board::Board()
