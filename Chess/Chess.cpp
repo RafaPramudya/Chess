@@ -273,46 +273,54 @@ Board::Board(const char* fenNotation)
 
 void Board::makeMove(Move& move)
 {
-	/*if (!move.startSquare || !move.targetSquare) throw std::exception("Error Square Invalid Value");*/
+	// Saving Board Snapshot
+	move.lastBoardWhiteCheck = whiteKingChecked;
+	move.lastBoardBlackCheck = blackKingChecked;
 
-	auto startPiece = piecesPlaced[move.startSquare.getIndex()];
+	move.lastWhiteKingCastle  = whiteKingCastle;
+	move.lastWhiteQueenCastle = whiteQueenCastle;
+	move.lastBlackKingCastle  = blackKingCastle;
+	move.lastBlackQueenCastle = blackQueenCastle;
+	move.setLastBoardEnPassantSquare((enPassantSquare) ? enPassantSquare : Square());
+
+	auto startPiece = piecesPlaced[move.startSquareIdx];
 
 	// Update King Position
 	if (startPiece.getType() == Piece::KING) {
-		if (startPiece.isWhite())	whiteKingSquare = move.targetSquare;
-		else						blackKingSquare = move.targetSquare;
+		if (startPiece.isWhite())	whiteKingSquare = move.getTargetSquare();
+		else						blackKingSquare = move.getTargetSquare();
 	}
 
 	// EnPassant
-	if ((startPiece.getType()) == Piece::PAWN && move.targetSquare == getEnPassant()) {
-		if (startPiece.isBlack())	piecesPlaced[(move.targetSquare + Move::UP).getIndex()] = Piece();
-		else						piecesPlaced[(move.targetSquare + Move::DOWN).getIndex()] = Piece();
+	if ((startPiece.getType()) == Piece::PAWN && move.getTargetSquare() == getEnPassant()) {
+		if (startPiece.isBlack())	piecesPlaced[(move.getTargetSquare() + Move::UP).getIndex()] = Piece();
+		else						piecesPlaced[(move.getTargetSquare() + Move::DOWN).getIndex()] = Piece();
 
 		move.enPassant = true;
 	}
 
 	resetEnPassant();
-	if ((startPiece.getType()) == Piece::PAWN && std::abs(move.targetSquare.getRank() - move.startSquare.getRank()) == 2) {
-		setEnPassant((startPiece.isBlack()) ? move.targetSquare + Move::UP : move.targetSquare + Move::DOWN);
+	if ((startPiece.getType()) == Piece::PAWN && std::abs(move.getTargetSquare().getRank() - move.getStartSquare().getRank()) == 2) {
+		setEnPassant((startPiece.isBlack()) ? move.getTargetSquare() + Move::UP : move.getTargetSquare() + Move::DOWN);
 	}
 
 	// Castle
-	if (move.targetSquare == Square("a1") || move.startSquare == Square("a1")) whiteQueenCastle = false;
-	if (move.targetSquare == Square("h1") || move.startSquare == Square("h1")) whiteKingCastle = false;
-	if (move.targetSquare == Square("a8") || move.startSquare == Square("a8")) blackQueenCastle = false;
-	if (move.targetSquare == Square("h8") || move.startSquare == Square("h8")) blackKingCastle = false;
+	if (move.getTargetSquare() == Square("a1") || move.getStartSquare() == Square("a1")) whiteQueenCastle = false;
+	if (move.getTargetSquare() == Square("h1") || move.getStartSquare() == Square("h1")) whiteKingCastle = false;
+	if (move.getTargetSquare() == Square("a8") || move.getStartSquare() == Square("a8")) blackQueenCastle = false;
+	if (move.getTargetSquare() == Square("h8") || move.getStartSquare() == Square("h8")) blackKingCastle = false;
 	if ((startPiece.getType()) == Piece::KING) {
 		if (startPiece.isBlack())	{ blackKingCastle = false; blackQueenCastle = false; }
 		else						{ whiteKingCastle = false; whiteQueenCastle = false; }
 
-		if (std::abs(move.startSquare.getFile() - move.targetSquare.getFile()) >= 2) {
-			if (move.targetSquare.getFile() == 2) {
-				piecesPlaced[(move.targetSquare + Move::RIGHT).getIndex()] = Piece(Piece::ROOK, startPiece.isWhite());
-				piecesPlaced[(move.targetSquare + Move::LEFT * 2).getIndex()] = Piece();
+		if (std::abs(move.getStartSquare().getFile() - move.getTargetSquare().getFile()) >= 2) {
+			if (move.getTargetSquare().getFile() == 2) {
+				piecesPlaced[(move.getTargetSquare() + Move::RIGHT).getIndex()] = Piece(Piece::ROOK, startPiece.isWhite());
+				piecesPlaced[(move.getTargetSquare() + Move::LEFT * 2).getIndex()] = Piece();
 			}
-			else if (move.targetSquare.getFile() == 6) {
-				piecesPlaced[(move.targetSquare + Move::LEFT).getIndex()] = Piece(Piece::ROOK, startPiece.isWhite());
-				piecesPlaced[(move.targetSquare + Move::RIGHT).getIndex()] = Piece();
+			else if (move.getTargetSquare().getFile() == 6) {
+				piecesPlaced[(move.getTargetSquare() + Move::LEFT).getIndex()] = Piece(Piece::ROOK, startPiece.isWhite());
+				piecesPlaced[(move.getTargetSquare() + Move::RIGHT).getIndex()] = Piece();
 			}
 
 			move.castle = true;
@@ -320,14 +328,10 @@ void Board::makeMove(Move& move)
 	}
 
 	// Execute Move
-	move.capturedPiece = piecesPlaced[move.targetSquare.getIndex()];
+	move.setCapturedPiece(piecesPlaced[move.targetSquareIdx]);
 
-	piecesPlaced[move.targetSquare.getIndex()] = startPiece;
-	piecesPlaced[move.startSquare.getIndex()] = Piece();
-
-	// Special Move Flag
-	move.lastBoardWhiteCheck = whiteKingChecked;
-	move.lastBoardBlackCheck = blackKingChecked;
+	piecesPlaced[move.targetSquareIdx] = startPiece;
+	piecesPlaced[move.startSquareIdx] = Piece();
 
 	analyzeCheck();
 
@@ -336,51 +340,58 @@ void Board::makeMove(Move& move)
 
 void Board::unMakeMove(Move move)
 {
-	if (!move.startSquare || !move.targetSquare) return;
+	if (!move.getStartSquare() || !move.getTargetSquare()) return;
 
-	auto movingPiece = piecesPlaced[move.targetSquare.getIndex()];
+	auto movingPiece = piecesPlaced[move.targetSquareIdx];
 
 	// Update King Posititon
 	if (movingPiece.getType() == Piece::KING) {
-		if (movingPiece.isWhite())	whiteKingSquare = move.startSquare;
-		else						blackKingSquare = move.startSquare;
+		if (movingPiece.isWhite())	whiteKingSquare = move.getStartSquare();
+		else						blackKingSquare = move.getStartSquare();
 	}
 
-	piecesPlaced[move.startSquare.getIndex()] = movingPiece;
-	piecesPlaced[move.targetSquare.getIndex()] = move.capturedPiece;
+	piecesPlaced[move.startSquareIdx] = movingPiece;
+	piecesPlaced[move.targetSquareIdx] = move.capturedPieceIdx;
+
+	// Restore Board Snapshot
+	whiteKingChecked = move.lastBoardWhiteCheck;
+	blackKingChecked = move.lastBoardBlackCheck;
+
+	whiteKingCastle  = move.lastWhiteKingCastle;
+	whiteQueenCastle = move.lastWhiteQueenCastle;
+	blackKingCastle  = move.lastBlackKingCastle;
+	blackQueenCastle = move.lastBlackQueenCastle;
+	enPassantSquare = move.getLastBoardEnPassantSquare();
+
 
 	// EnPassant
 	if (move.enPassant) {
-		if (move.targetSquare.getRank() == 5) {
-			piecesPlaced[(move.targetSquare + Move::DOWN).getIndex()] = Piece(Piece::PAWN, false);
+		if (move.getTargetSquare().getRank() == 5) {
+			piecesPlaced[(move.getTargetSquare() + Move::DOWN).getIndex()] = Piece(Piece::PAWN, false);
 		}
-		else if (move.targetSquare.getRank() == 2) {
-			piecesPlaced[(move.targetSquare + Move::UP).getIndex()] = Piece(Piece::PAWN, true);
+		else if (move.getTargetSquare().getRank() == 2) {
+			piecesPlaced[(move.getTargetSquare() + Move::UP).getIndex()] = Piece(Piece::PAWN, true);
 		}
-		enPassantSquare = move.targetSquare;
+		enPassantSquare = move.getTargetSquare();
 	}
 
 	// Castle
 	if (move.castle) {
-		if (move.targetSquare.getFile() == 2) {
-			piecesPlaced[(move.targetSquare + Move::LEFT * 2).getIndex()] = Piece(Piece::ROOK, (move.targetSquare.getRank() == 0));
-			piecesPlaced[(move.targetSquare + Move::RIGHT).getIndex()] = Piece();
+		if (move.getTargetSquare().getFile() == 2) {
+			piecesPlaced[(move.getTargetSquare() + Move::LEFT * 2).getIndex()] = Piece(Piece::ROOK, (move.getTargetSquare().getRank() == 0));
+			piecesPlaced[(move.getTargetSquare() + Move::RIGHT).getIndex()] = Piece();
 
-			if (move.targetSquare.getRank() == 0)	whiteQueenCastle = true;
+			if (move.getTargetSquare().getRank() == 0)	whiteQueenCastle = true;
 			else									blackQueenCastle = true;
 		}
-		else if (move.targetSquare.getFile() == 6) {
-			piecesPlaced[(move.targetSquare + Move::RIGHT).getIndex()] = Piece(Piece::ROOK, (move.targetSquare.getRank() == 0));
-			piecesPlaced[(move.targetSquare + Move::LEFT).getIndex()] = Piece();
+		else if (move.getTargetSquare().getFile() == 6) {
+			piecesPlaced[(move.getTargetSquare() + Move::RIGHT).getIndex()] = Piece(Piece::ROOK, (move.getTargetSquare().getRank() == 0));
+			piecesPlaced[(move.getTargetSquare() + Move::LEFT).getIndex()] = Piece();
 
-			if (move.targetSquare.getRank() == 0)	whiteKingCastle = true;
+			if (move.getTargetSquare().getRank() == 0)	whiteKingCastle = true;
 			else									blackKingCastle = true;
 		}
 	}
-
-	// Undo Special Flag
-	whiteKingChecked = move.lastBoardWhiteCheck;
-	blackKingChecked = move.lastBoardBlackCheck;
 
 	whiteToMove = !whiteToMove;
 }
@@ -678,9 +689,9 @@ std::vector<Move> Move::generateValidMoves(Square square, Board* board)
 
 	results.erase(
 		std::remove_if(results.begin(), results.end(), [&](Move& move) {
-			if (!move.targetSquare) return true;
+			if (!move.getTargetSquare()) return true;
 
-			move.startSquare = square;
+			move.setStartSquare(square);
 			board->makeMove(move);
 			bool kingChecked = (piece.isWhite()) ? board->isWhiteChecked() : board->isBlackChecked();
 			board->unMakeMove(move);

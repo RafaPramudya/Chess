@@ -52,28 +52,28 @@ void Game::event()
 				else					selectedSquare = (((int)std::floor(buttonEvent.y / 100)) * 8 + 7 - (int)std::floor(buttonEvent.x / 100));
 				auto piece = board->getPiece(selectedSquare);
 
-				if (wantedMove.startSquare) {
-					if (wantedMove.startSquare == selectedSquare) { wantedMove.startSquare = Square(64); break; }
-					wantedMove.targetSquare = selectedSquare;
+				if (wantedMove.getStartSquare()) {
+					if (wantedMove.getStartSquare() == selectedSquare) { wantedMove.setStartSquare(Square(64)); break; }
+					wantedMove.setTargetSquare(selectedSquare);
 
 					bool valid = false;
 					for (const auto& validMove : validMoves) {
-						if (validMove.targetSquare == wantedMove.targetSquare) {
+						if (validMove.getTargetSquare() == wantedMove.getTargetSquare()) {
 							valid = true;
 							break;
 						}
 					}
 					if (valid) { board->makeMove(wantedMove); board->addMoveRecord(wantedMove); }
 
-					wantedMove.startSquare	= Square();
-					wantedMove.targetSquare = Square();
+					wantedMove.setStartSquare(Square());
+					wantedMove.setTargetSquare(Square());
 				}
 				else {
 					if ((piece.getId() % 8) == Piece::NONE) break;
 					if (piece.isWhite() != board->isWhiteToMove()) break;
-					wantedMove.startSquare = selectedSquare;
+					wantedMove.setStartSquare(selectedSquare);
 
-					validMoves = Move::generateValidMoves(wantedMove.startSquare, board);
+					validMoves = Move::generateValidMoves(wantedMove.getStartSquare(), board);
 				}
 			}
 		}
@@ -132,11 +132,11 @@ void Game::render()
 		}
 	}
 
-	if (wantedMove.startSquare) {
+	if (wantedMove.getStartSquare()) {
 		SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
 
 		for (auto& move : validMoves) {
-			auto validSquare = move.targetSquare;
+			auto validSquare = move.getTargetSquare();
 			int rank = validSquare.getRank();
 			int file = validSquare.getFile();
 

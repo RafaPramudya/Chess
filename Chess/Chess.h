@@ -42,7 +42,7 @@ public:
 
 	bool isBlack() const { return id & Type::BLACK; }
 	bool isWhite() const { return !isBlack(); }
-	bool isEnemy(Piece& other) const { return (isBlack() ^ other.isBlack()) && !(id == 0 || id == 7); }
+	bool isEnemy(Piece& other) const { return (isBlack() != other.isBlack()) && !(id == 0 || id == 7); }
 
 	char getNotation() const { return notation[id]; }
 	uint8_t getId() const { return id; }
@@ -106,18 +106,23 @@ public:
 
 class Move {
 public:
-	Square startSquare;
-	Square targetSquare;
-
-	Piece capturedPiece;
-
-	// Special Move
+	// Packed Data
 	struct {
-		bool enPassant	: 1 = false;
-		bool castle		: 1 = false;
+		uint32_t startSquareIdx : 7			= 64; // 0 - 63 data + 1-bit for None
+		uint32_t targetSquareIdx : 6		= 0;  // 0 - 63 data
+		uint32_t capturedPieceIdx : 4		= 0;  // 0 - 15 Piece::getId()
+		uint32_t lastBoardEnPasasantIdx : 7 = 64; // 0 - 63 data + 1-bit for None
+		
+		// Special Flag
+		uint32_t enPassant : 1				= false; // 0 - 1 bool
+		uint32_t castle : 1					= false; // 0 - 1 bool
+		uint32_t lastBoardWhiteCheck : 1	= false; // 0 - 1 bool
+		uint32_t lastBoardBlackCheck : 1	= false; // 0 - 1 bool
 
-		bool lastBoardWhiteCheck : 1 = false;
-		bool lastBoardBlackCheck : 1 = false;
+		uint32_t lastWhiteKingCastle  : 1	= false; // 0 - 1 bool
+		uint32_t lastWhiteQueenCastle : 1	= false; // 0 - 1 bool
+		uint32_t lastBlackKingCastle  : 1	= false; // 0 - 1 bool
+		uint32_t lastBlackQueenCastle : 1	= false; // 0 - 1 bool
 	};
 
 	enum Direction : int8_t {
@@ -133,9 +138,26 @@ public:
 	};
 
 	Move() {}
-	Move(Square start, Square target, Piece piece) 
-		: startSquare(start), targetSquare(target), capturedPiece(piece) {}
-	Move(Square target) : targetSquare(target) {}
+	Move(Square start, Square target, Piece piece) {
+		startSquareIdx = start.getIndex();
+		targetSquareIdx = target.getIndex();
+		capturedPieceIdx = piece.getId();
+	}
+	Move(Square target) {
+		targetSquareIdx = target.getIndex();
+	}
+
+	// Getters
+	Square	getStartSquare()				const { return Square(startSquareIdx); }
+	Square	getTargetSquare()				const { return Square(targetSquareIdx); }
+	Piece	getCapturedPiece()				const { return Piece(capturedPieceIdx); }
+	Square	getLastBoardEnPassantSquare()	const { return Square(lastBoardEnPasasantIdx); }
+
+	// Setters
+	void setStartSquare				 (Square square) { startSquareIdx = square.getIndex(); }
+	void setTargetSquare			 (Square square) { targetSquareIdx = square.getIndex(); }
+	void setCapturedPiece			 (Piece piece)   { capturedPieceIdx = piece.getId(); }
+	void setLastBoardEnPassantSquare (Square square) { lastBoardEnPasasantIdx = square.getIndex(); }
 
 	static std::vector<Move> generateValidMoves(Square square, Board* board); 
 	static std::vector<Move> generateMoves(Piece* piecesArray, bool whiteToPlay);
