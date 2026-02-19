@@ -1,0 +1,6 @@
+MyBot total lines : 197281
+Python total lines: 197281
+
+Extra moves (BUG in your bot): 0
+Missing moves: 0
+

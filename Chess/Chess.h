@@ -5,6 +5,7 @@
 
 #include <iostream>
 #include <vector>
+#include <string>
 
 #include <cstring>
 #include <cassert>
@@ -160,7 +161,7 @@ public:
 	void setLastBoardEnPassantSquare (Square square) { lastBoardEnPasasantIdx = square.getIndex(); }
 
 	static std::vector<Move> generateValidMoves(Square square, Board* board); 
-	static std::vector<Move> generateMoves(Piece* piecesArray, bool whiteToPlay);
+	static std::vector<Move> generateMoves(Board* board);
 };
 
 class Board {
@@ -178,7 +179,9 @@ private:
 		bool blackKingChecked	: 1 = false;
 		bool whiteKingChecked	: 1 = false;
 
-		bool whiteToMove		: 1  = true;
+		bool whiteToMove		: 1 = true;
+
+		bool moveNotationDebug  : 1 = false;
 	};
 private:
 	Square whiteKingSquare;
@@ -188,6 +191,7 @@ private:
 	uint16_t fullMove = 0;
 	
 	std::vector<Move> moveRecord;
+	std::string moveNotation = "";
 public:
 	constexpr static const char* defaultFen = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
 
@@ -235,4 +239,7 @@ public:
 	Square getEnPassant() const { return enPassantSquare; }
 	void setEnPassant(const Square& square) { enPassantSquare = square; }
 	void resetEnPassant() { enPassantSquare = Square(); }
+
+	void turnNotationDebug(bool flag) { moveNotationDebug = flag; }
+	std::string getMoveNotation() const { return moveNotation; }
 };

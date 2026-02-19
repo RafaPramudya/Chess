@@ -333,6 +333,14 @@ void Board::makeMove(Move& move)
 	piecesPlaced[move.targetSquareIdx] = startPiece;
 	piecesPlaced[move.startSquareIdx] = Piece();
 
+	if (moveNotationDebug) {
+		moveNotation += static_cast<char>(move.getStartSquare().getFile() + 'a');
+		moveNotation += static_cast<char>(move.getStartSquare().getRank() + '1');
+		moveNotation += static_cast<char>(move.getTargetSquare().getFile() + 'a');
+		moveNotation += static_cast<char>(move.getTargetSquare().getRank() + '1');
+		moveNotation += ' ';
+	}
+
 	analyzeCheck();
 
 	whiteToMove = !whiteToMove;
@@ -372,7 +380,6 @@ void Board::unMakeMove(Move move)
 		else if (move.getTargetSquare().getRank() == 2) {
 			piecesPlaced[(move.getTargetSquare() + Move::UP).getIndex()] = Piece(Piece::PAWN, true);
 		}
-		enPassantSquare = move.getTargetSquare();
 	}
 
 	// Castle
@@ -380,17 +387,15 @@ void Board::unMakeMove(Move move)
 		if (move.getTargetSquare().getFile() == 2) {
 			piecesPlaced[(move.getTargetSquare() + Move::LEFT * 2).getIndex()] = Piece(Piece::ROOK, (move.getTargetSquare().getRank() == 0));
 			piecesPlaced[(move.getTargetSquare() + Move::RIGHT).getIndex()] = Piece();
-
-			if (move.getTargetSquare().getRank() == 0)	whiteQueenCastle = true;
-			else									blackQueenCastle = true;
 		}
 		else if (move.getTargetSquare().getFile() == 6) {
 			piecesPlaced[(move.getTargetSquare() + Move::RIGHT).getIndex()] = Piece(Piece::ROOK, (move.getTargetSquare().getRank() == 0));
 			piecesPlaced[(move.getTargetSquare() + Move::LEFT).getIndex()] = Piece();
-
-			if (move.getTargetSquare().getRank() == 0)	whiteKingCastle = true;
-			else									blackKingCastle = true;
 		}
+	}
+
+	if (moveNotationDebug) {
+		if (moveNotation.length() >= 5) moveNotation.erase(moveNotation.length() - 5);
 	}
 
 	whiteToMove = !whiteToMove;
@@ -657,6 +662,8 @@ std::vector<Move> Move::generateValidMoves(Square square, Board* board)
 
 		for (int i = 0; i < 8; i++) {
 			Square targetSquare = movingSquare[i];
+
+			if (!targetSquare) continue;
 			if (square.getFile() == 0 && targetSquare.getFile() == 7) continue;
 			if (square.getFile() == 7 && targetSquare.getFile() == 0) continue;
 
@@ -700,4 +707,22 @@ std::vector<Move> Move::generateValidMoves(Square square, Board* board)
 		results.end()
 	);
 	return results;
+}
+
+std::vector<Move> Move::generateMoves(Board* board)
+{
+	std::vector<Move> allMoves;
+	allMoves.reserve(32); // Standard chess position 20-40 moves
+
+	for (int i = 0; i < 64; i++) {
+		Square sq(i);
+		Piece piece = board->getPiece(sq);
+
+		if (piece && piece.isWhite() == board->isWhiteToMove()) {
+			std::vector<Move> pieceMoves = generateValidMoves(sq, board);
+			allMoves.insert(allMoves.end(), pieceMoves.begin(), pieceMoves.end());
+		}
+	}
+
+	return allMoves;
 }

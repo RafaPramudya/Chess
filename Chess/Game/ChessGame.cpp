@@ -14,6 +14,9 @@ int main(int argc, char* argv[])
 
 	Board board(Board::defaultFen);
 	//Board board("r3k2r/8/8/8/8/8/8/R3K2R w KQkq - 0 1");
+	//Board board("rn1qkbnr/pbpppppp/1p6/8/8/N7/PPPPPPPP/1RBQKBNR w Kkq - 2 3");
+
+	board.turnNotationDebug(true);
 	game_instance.setBoard(&board);
 
 	const std::chrono::duration<double> frameTime(1.0 / FPS);
